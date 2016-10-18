@@ -19,8 +19,14 @@ _sep() {
 #echo -e "committing $msg !\n"
 
 commit_and_push_repository() {
-    msg=$1?$1:"Default updating"}
+    msg="Default updating"
+
+    if [[ ! -z $1 ]]; then
+        msg=$1
+    fi
+
     _sep $msg
+
     git add -A ; git commit -m "$msg" ; git push origin master ;
 }
 
