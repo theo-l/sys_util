@@ -12,9 +12,6 @@ install_command="sudo apt-get install"
 current_path=$(pwd)
 
 
-if [[ ! -d $GIT_HOME ]]; then
-    mkdir $GIT_HOME
-fi
 
 
 declare -a common_software_profil_list=(
@@ -246,6 +243,10 @@ __other_config() {
 
 
 #############################开始调用各个定义的方法来安装软件列表以及相关配置###############################
+
+if [[ ! -d $GIT_HOME ]]; then
+    mkdir $GIT_HOME
+fi
 __install_common_repository_profil_list
 __install_common_software_profil_list
 __git_config
