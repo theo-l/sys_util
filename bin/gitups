@@ -4,15 +4,26 @@
 
 # Usage: gitups "commit message"
 
-msg="updated default"
+_sep() {
+    echo -e "\n========== $1 ==========\n" 
+}
 
-if [[ ! -z $1 ]]; then
-    msg=$1
-else
-    echo -e "\nNo commit message, using default message instead!\n"
-fi
+#msg="updated default"
+#
+#if [[ ! -z $1 ]]; then
+#    msg=$1
+#else
+#    echo -e "\nNo commit message, using default message instead!\n"
+#fi
+#
+#echo -e "committing $msg !\n"
 
-echo -e "committing $msg !\n"
+commit_and_push_repository() {
+    msg=$1?$1:"Default updating"}
+    _sep $msg
+    git add -A ; git commit -m "$msg" ; git push origin master ;
+}
+
+commit_and_push_repository $1
 
 
-git add -A ; git commit -m "$msg" ; git push origin master ;
