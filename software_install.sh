@@ -39,8 +39,9 @@ UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
 UTIL_CONFIG_HOME=$UTIL_HOME/config
 SHELL_HOME=$UTIL_HOME/shell
 SHELL_PATH_HOME=$UTIL_HOME/bin
-install_command="sudo apt-get install"
 
+install_command="sudo apt-get install"
+current_path=$(pwd)
 
 if [[ ! -d $GIT_HOME ]]; then
     mkdir $GIT_HOME
@@ -63,7 +64,6 @@ __install_common_repository_profil_list() {
             printf "Installing the repository: %30s into %50s\n" $repo $GIT_HOME/$repo 
             git clone "$GIT_REPO_URL/${repo}.git" $GIT_HOME/${repo}
         else
-            current_path=$(pwd)
             cd $GIT_HOME/$repo
             git fetch origin; git pull origin master
             cd $current_path
@@ -119,7 +119,6 @@ __python_config() {
         mkdir ~/.virtualenv
     fi
 
-    current_path=$(pwd)
 
     printf "Current running script directory: %50s\n" $current_path
     #为python2和python3分别创建一个虚拟环境
@@ -167,7 +166,6 @@ __zsh_config() {
 
     # 如果 oh-my-zsh 插件没有安装到系统中时，需要对其进行安装
     if [[ ! -d ~/.oh-my-zsh ]]; then
-        current_path=$(pwd)
         cd "GIT_HOME/oh-my-zsh"
         source ./tools/install.sh
         cd $current_path
@@ -175,7 +173,6 @@ __zsh_config() {
 
     # 为 zsh 安装 powerline 颜色主题
     if [[ ! -f ~/.oh-my-zsh/custom/themes/powerline.zsh-theme ]]; then
-        current_path=$(pwd)
         cd "$GIT_HOME/oh-my-zsh-powerline-theme"
         source ./install_in_omz.sh
         cd $current_path
@@ -199,7 +196,6 @@ __powerline_font_config() {
     
     __sep "Configuring powerline font"
 
-    current_path=$(pwd)
 
     if [[ -z $(ls ~/.local/share/fonts | grep powerline) ]]; then
         echo -e "\nInstalling powerline fonts\n"        
@@ -225,8 +221,8 @@ __vim_config() {
     
     __sep "Configuring Vim"
 
-    current_path=$(pwd)
 
+#    TODO : vim maybe need to be installed manually
 #    cd $GIT_HOME/vim
 #    ./configure --with-features=huge \
 #            --enable-multibyte \
@@ -251,8 +247,10 @@ __vim_config() {
         cp $UTIL_CONFIG_HOME/vimrc ~/.vimrc
     fi
 
-    vim +PlugInstall
-
+    vim +PlugInstall 
+#    TODO YouCompleteMe Plugin maybe need to be install manully
+#    $(python install.py)
+    
     cd $current_path
     
 }
