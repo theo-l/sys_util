@@ -1,0 +1,13 @@
+#!/bin/bash
+#customized sublime command 
+
+CMD="LD_PRELOAD=/usr/lib/libsublime_imfix.so subl"
+FILENAME=$1
+
+if [[ -n "$1" ]]; then
+    CMD=${CMD} " " `pwd`/$FILENAME
+fi
+
+cd "$SUB2_HOME"
+eval $CMD
+

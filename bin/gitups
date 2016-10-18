@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# file used to autometically update git repository to remote
+
+# Usage: gitups "commit message"
+
+msg="updated default"
+
+if [[ ! -z $1 ]]; then
+    msg=$1
+else
+    echo -e "\nNo commit message, using default message instead!\n"
+fi
+
+echo -e "committing $msg !\n"
+
+
+git add -A ; git commit -m "$msg" ; git push origin master ;

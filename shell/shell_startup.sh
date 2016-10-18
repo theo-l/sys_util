@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DEBUG=1
+DEBUG=0
+
 _debug() {
     if [[ $DEBUG == 1 ]]; then
         echo -e "\n----DEBUG:$1----\n"
@@ -39,7 +40,7 @@ _debug $PATH
 ############################################################
 updating_local_repositories() {
     _sep "Updating local repositories"
-    for repo in $(find ${PROJECT_HOME} -type d -maxdepth 1); do
+    for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         printf "\nUpdating local repository: ==={%-s}\n" $repo
         cd $repo
 
@@ -63,8 +64,9 @@ if [[ ! -f $SHELL_HOME/started ]]; then
     touch $SHELL_HOME/started 
     updating_local_repositories
 
-    # MORE ACTIONS
+    #TODO
+    # MORE STARTUP ACTIONS ADD here
 
 else
-    echo "Shell already started"
+    _debug "Shell already started"
 fi

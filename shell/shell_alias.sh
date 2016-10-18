@@ -45,6 +45,7 @@ alias cdsh="cd $SHELL_HOME"
 alias cd2py="cd $PYTHON_ENV_HOME/py2"
 alias cd3py="cd $PYTHON_ENV_HOME/py3"
 
+alias rmd="rm -rf"
 
 ############################################################
 
