@@ -1,12 +1,12 @@
 #!/bin/bash
-set -eu
+#set -eu
 
 GIT_HOME=~/gitworkspace
 GIT_REPO_URL="https://github.com/theo-l"
 
-if [[ ! -z $BASH ]]; then
+if [[ -z $BASH ]]; then
     UTIL_HOME=$(cd ${BASH_SOURCE[0]%/*} && pwd )
-elif [[ ! -z $ZSH_NAME ]]; then
+elif [[  -z ${ZSH_NAME:''} ]]; then
     UTIL_HOME=$(dirname $0)
 fi
 UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
@@ -20,7 +20,8 @@ current_path=$(pwd)
 
 
 
-declare -a common_software_profil_list=(
+typeset -a common_software_profil_list
+common_software_profil_list=(
         #    vim 
         #    vim-gnome 
             git 
@@ -40,7 +41,8 @@ declare -a common_software_profil_list=(
         # silversearch-ag
 )
 
-declare -a common_repository_profil_list=(
+typeset -a common_repository_profil_list
+common_repository_profil_list=(
             fonts
             vim
             oh-my-zsh
@@ -64,6 +66,7 @@ __install_common_repository_profil_list() {
             git clone "$GIT_REPO_URL/${repo}.git" $GIT_HOME/${repo}
         else
             cd $GIT_HOME/$repo
+            printf "==========updating %-s\n" $GIT_HOME/$repo
             git fetch origin; git pull origin master
             cd $current_path
         fi
