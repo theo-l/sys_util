@@ -27,8 +27,6 @@ alias gitcmt="git commit -m"
 alias gitpso="git push origin master"
 alias gitplo="git pull origin master"
 alias gitfo="git fetch origin"
-alias gitups="git add -A; git commit -m 'update default'; git push origin master;"
-alias gitupl="git fetch origin; git pull origin master;"
 
 ##########  通用目录进入别名: 在此可以定义任意其他的目录进入别名
 alias cddwn="cd $DOWNLOAD_HOME"
