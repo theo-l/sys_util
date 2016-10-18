@@ -13,4 +13,4 @@ export MUSIC_HOME=~/Music
 export PICTURE_HOME=~/Pictures
 export VIDEO_HOME=~/Videos
 export WORKSPACE_HOME=~/workspace
-export EDITOR=vim
+export EDITOR=vim #使用vim作为系统的默认编辑器
