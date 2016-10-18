@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/Vundle.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
 Plug 'jistr/vim-nerdtree-tabs'
