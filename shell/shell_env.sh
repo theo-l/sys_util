@@ -14,3 +14,4 @@ export MUSIC_HOME=~/Music
 export PICTURE_HOME=~/Pictures
 export VIDEO_HOME=~/Videos
 export WORKSPACE_HOME=~/workspace
+export EDITOR=vim
