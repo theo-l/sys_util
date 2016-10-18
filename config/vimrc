@@ -1,0 +1,2 @@
+"calling init.vim inside .vim/
+source ~/.vim/init.vim

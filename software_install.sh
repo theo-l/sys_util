@@ -6,10 +6,9 @@ set -eu
 # 各个软件工具的个人偏好配置
 ############################################################
 
-
 declare -a common_software_profil_list=(
-    vim 
-    vim-gnome 
+#    vim 
+#    vim-gnome 
     git 
     tmux 
     ipython 
@@ -22,37 +21,39 @@ declare -a common_software_profil_list=(
     zsh 
     htop 
     nload 
+    curl
     
 # silversearch-ag
 )
 
 declare -a common_repository_profil_list=(
     fonts
+    vim
     oh-my-zsh
     oh-my-zsh-powerline-theme
     tmux-powerline
 )
+GIT_HOME=~/gitworkspace
+GIT_REPO_URL="https://github.com/theo-l"
+UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
+UTIL_CONFIG_HOME=$UTIL_HOME/config
+SHELL_HOME=$UTIL_HOME/shell
+SHELL_PATH_HOME=$UTIL_HOME/bin
+install_command="sudo apt-get install"
 
-############################################################
-# 创建个人 git 软件仓库目录
-############################################################
-GIT_HOME="$HOME/gitworkspace"
+
 if [[ ! -d $GIT_HOME ]]; then
     mkdir $GIT_HOME
 fi
 
-GIT_REPO_URL="https://github.com/theo-l"
 
-############################################################
-# 为每个函数的调用打印一个分割符
-############################################################
 __sep() {
     echo -e "\n========== $1 ==========\n" 
 }
 
-############################################################
-# 安装个人偏好所需的 git 软件仓库列表
-############################################################
+
+
+
 __install_common_repository_profil_list() {
 
     __sep 'Installing common repository'
@@ -61,14 +62,18 @@ __install_common_repository_profil_list() {
         if [[ ! -d $GIT_HOME/$repo ]]; then
             printf "Installing the repository: %30s into %50s\n" $repo $GIT_HOME/$repo 
             git clone "$GIT_REPO_URL/${repo}.git" $GIT_HOME/${repo}
+        else
+            current_path=$(pwd)
+            cd $GIT_HOME/$repo
+            git fetch origin; git pull origin master
+            cd $current_path
         fi
     done
 }
 
 
-############################################################
-# 安装个人偏好软件列表
-############################################################
+
+
 __install_common_software_profil_list() {
     __sep "Installing common software"
 
@@ -76,7 +81,7 @@ __install_common_software_profil_list() {
         if [[ -z $(which $soft) && -z $(dpkg --list | grep $soft) ]]; then
             printf "Software %-20s not exists, installing it ...\n" "<$soft>"
         
-            sudo apt-get install $soft
+            $install_command $soft
         else
             printf "Software %-20s already exists...\n" "<$soft>"
         fi
@@ -85,9 +90,8 @@ __install_common_software_profil_list() {
 }
 
 
-############################################################
-# 在安装 git 之后配置一些与其相关的全局变量
-############################################################
+
+
 __git_config() {
    __sep "Configuring git " 
     git config --global user.email "theol.liang@gamil.com"
@@ -96,14 +100,19 @@ __git_config() {
     git config --global credential.helper 'cache --timeout=7200' #两个小时的有效期
 }
 
-############################################################
-# python 个人偏好环境相关配置
-############################################################
+
+
+
+
 __python_config() {
     __sep "Configuring python" 
     #安装python虚拟环境配置工具
-    sudo pip install --upgrade virtualenv
-    sudo pip3 install --upgrade virtualenv
+    if [[ ! -z $(pip list | grep virtualenv) ]]; then
+        echo "virtualenv already exists"
+    else
+        sudo pip install --upgrade virtualenv
+        sudo pip3 install --upgrade virtualenv
+    fi
 
     #python 的虚拟环境默认目录为 ~/.virtualenv
     if [[ ! -d ~/.virtualenv ]]; then
@@ -135,21 +144,23 @@ __python_config() {
 }
 
 
-############################################################
-# tmux 个人偏好环境相关设置
-############################################################
+
+
+
+
 __tmux_config() {
     __sep "Configuring tmux"
     if [[ ! -f ~/.tmux.conf ]]; then
         printf "Coping %50s to %50s\n" ./tmux.config ~
-        cp ./tmux.config ~/.tmux.conf
+        cp $UTIL_CONFIG_HOME/tmux.config ~/.tmux.conf
     fi
 }
 
 
-############################################################
-# zsh 个人偏好环境设置
-############################################################
+
+
+
+
 __zsh_config() {
     
     __sep "Configuring zsh"
@@ -170,22 +181,80 @@ __zsh_config() {
         cd $current_path
     fi
 
+    if [[ ! "$(tail -n 1 $UTIL_CONFIG_HOME/zshrc)"  =~ .*shell_startup.sh$ ]]; then
+        echo "source $SHELL_HOME/shell_startup.sh" >> ./config/zshrc
+    fi
+
     # 将自己个人偏好的 zsh 配置文件拷贝到系统中
-    cp ./zshrc ~/.zshrc
+    cp $UTIL_CONFIG_HOME/zshrc ~/.zshrc
+    
 
 }
 
 
-############################################################
-# powerline 字体配置
-############################################################
+
+
+
 __powerline_font_config() {
     
-    # 将 powerline 字体安装到系统中
-    source "$GIT_HOME/fonts/install.sh"
+    __sep "Configuring powerline font"
 
-    # 刷新系统中的字体
-    fc-cache -r
+    current_path=$(pwd)
+
+    if [[ -z $(ls ~/.local/share/fonts | grep powerline) ]]; then
+        echo -e "\nInstalling powerline fonts\n"        
+
+        # 将 powerline 字体安装到系统中
+        source "$GIT_HOME/fonts/install.sh"
+
+        # 刷新系统中的字体
+        fc-cache -r
+    else
+        echo -e "Powerline fonts already installed\n"
+    fi
+
+    cd $current_path
+}
+
+
+
+
+
+
+__vim_config() {
+    
+    __sep "Configuring Vim"
+
+    current_path=$(pwd)
+
+#    cd $GIT_HOME/vim
+#    ./configure --with-features=huge \
+#            --enable-multibyte \
+#            --enable-rubyinterp \
+#            --enable-pythoninterp \
+#            --with-python-config-dir=/usr/lib/python2.7/config \
+#            --enable-python3interp \
+#            --with-python3-config-dir=/usr/lib/python3.5/config \
+#            --enable-perlinterp \
+#            --enable-luainterp \
+#            --enable-cscope --prefix=/usr
+#    make VIMRUNTIMEDIR=/usr/share/vim/vim80; sudo make install
+
+
+
+
+    if [[ ! -d ~/.vim ]]; then
+        cp -r $UTIL_HOME/vim ~/.vim
+    fi
+
+    if [[ ! -f ~/.vimrc ]]; then
+        cp $UTIL_CONFIG_HOME/vimrc ~/.vimrc
+    fi
+
+    vim +PlugInstall
+
+    cd $current_path
+    
 }
 
 
@@ -197,4 +266,4 @@ __python_config
 __tmux_config
 __zsh_config
 __powerline_font_config
-
+__vim_config

@@ -69,9 +69,6 @@ export PATH="bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/u
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
-export JAVA_HOME="/home/${username}/softwares/jdk1.8.0_77"
-export JRE_HOME="/home/${username}/softwares/jdk1.8.0_77/jre/"
-export CLASSPATH="$JAVA_HOME/lib/"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,5 +99,4 @@ source $ZSH/oh-my-zsh.sh
 
 #set keyboard map
 #setxkbmap -option ctrl:nocaps
-source ~/.virtualenv/py2/bin/activate
-source /home/${username}/.shell/shell_config
+source /home/liang/projects/sys_util/shell/shell_startup.sh
