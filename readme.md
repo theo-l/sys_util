@@ -4,7 +4,7 @@
     
     software_install.sh
     
-*********** vim安装文件可能需要手动进行安装最新版本 **
+** vim安装文件可能需要手动进行安装最新版本 **
 
 ##2. Shell的个人偏好相关设置 ##
     将 shell/shell_startup.sh 配置到系统的 .zshrc/.bashrc 中以便开启个人的shell偏好设置
