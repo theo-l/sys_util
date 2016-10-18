@@ -4,6 +4,7 @@
     
     software_install.sh
     
+
 **vim安装文件可能需要手动进行安装最新版本**
 
 ##2. Shell的个人偏好相关设置 ##
