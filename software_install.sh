@@ -1,38 +1,6 @@
 #!/bin/bash
 set -eu
 
-############################################################
-# 安装个人常用的实用软件列表
-# 各个软件工具的个人偏好配置
-############################################################
-
-declare -a common_software_profil_list=(
-#    vim 
-#    vim-gnome 
-    git 
-    tmux 
-    ipython 
-    ipython3 
-    python-dev 
-    python3-dev 
-#    python-mysqldb
-    python-pip
-    python3-pip
-    zsh 
-    htop 
-    nload 
-    curl
-    
-# silversearch-ag
-)
-
-declare -a common_repository_profil_list=(
-    fonts
-    vim
-    oh-my-zsh
-    oh-my-zsh-powerline-theme
-    tmux-powerline
-)
 GIT_HOME=~/gitworkspace
 GIT_REPO_URL="https://github.com/theo-l"
 UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
@@ -43,16 +11,44 @@ SHELL_PATH_HOME=$UTIL_HOME/bin
 install_command="sudo apt-get install"
 current_path=$(pwd)
 
+
 if [[ ! -d $GIT_HOME ]]; then
     mkdir $GIT_HOME
 fi
 
 
+declare -a common_software_profil_list=(
+        #    vim 
+        #    vim-gnome 
+            git 
+            tmux 
+            ipython 
+            ipython3 
+            python-dev 
+            python3-dev 
+        #    python-mysqldb
+            python-pip
+            python3-pip
+            zsh 
+            htop 
+            nload 
+            curl
+            
+        # silversearch-ag
+)
+
+declare -a common_repository_profil_list=(
+            fonts
+            vim
+            oh-my-zsh
+            oh-my-zsh-powerline-theme
+            tmux-powerline
+)
+
+
 __sep() {
     echo -e "\n========== $1 ==========\n" 
 }
-
-
 
 
 __install_common_repository_profil_list() {
@@ -72,8 +68,6 @@ __install_common_repository_profil_list() {
 }
 
 
-
-
 __install_common_software_profil_list() {
     __sep "Installing common software"
 
@@ -90,8 +84,6 @@ __install_common_software_profil_list() {
 }
 
 
-
-
 __git_config() {
    __sep "Configuring git " 
     git config --global user.email "theol.liang@gamil.com"
@@ -99,9 +91,6 @@ __git_config() {
     git config --global credential.helper cache
     git config --global credential.helper 'cache --timeout=7200' #两个小时的有效期
 }
-
-
-
 
 
 __python_config() {
@@ -139,12 +128,7 @@ __python_config() {
     cd $current_path
     printf "Returned to current script directory: %50s\n" $(pwd)
     
-
 }
-
-
-
-
 
 
 __tmux_config() {
@@ -153,11 +137,8 @@ __tmux_config() {
         printf "Coping %50s to %50s\n" ./tmux.config ~
         cp $UTIL_CONFIG_HOME/tmux.config ~/.tmux.conf
     fi
+
 }
-
-
-
-
 
 
 __zsh_config() {
@@ -185,11 +166,7 @@ __zsh_config() {
     # 将自己个人偏好的 zsh 配置文件拷贝到系统中
     cp $UTIL_CONFIG_HOME/zshrc ~/.zshrc
     
-
 }
-
-
-
 
 
 __powerline_font_config() {
@@ -210,11 +187,8 @@ __powerline_font_config() {
     fi
 
     cd $current_path
+
 }
-
-
-
-
 
 
 __vim_config() {
@@ -256,7 +230,22 @@ __vim_config() {
 }
 
 
+__other_config() {
+    __sep "Configuring some others software's configuration"
 
+    # 配置 Pycharm 的 ideavim 插件配置文件
+    if [[ ! -f ~/.ideavimrc ]]; then
+        cp $UTIL_CONFIG_HOME/ideavimrc ~/.ideavimrc
+    fi
+    # 配置 Eclipse 的 vrapper 的插件配置文件
+    if [[ ! -f ~/.vrapperrc ]]; then
+        cp $UTIL_CONFIG_HOME/vrapperrc ~/.vrapperrc
+    fi
+}
+
+
+
+#############################开始调用各个定义的方法来安装软件列表以及相关配置###############################
 __install_common_repository_profil_list
 __install_common_software_profil_list
 __git_config
@@ -265,3 +254,4 @@ __tmux_config
 __zsh_config
 __powerline_font_config
 __vim_config
+__other_config

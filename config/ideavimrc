@@ -1,0 +1,312 @@
+"###############################"
+" vim Common config
+"###############################"
+
+"====================common vim configurations==============
+
+syntax on "enable vim to detective the file`s syntax
+
+set incsearch "increment search
+set hlsearch "highlight search
+set number "show line number
+set ruler "show a ruler in the bottom of vim
+"set rulerformat "custome the format of rule display
+"set showtabline=1 "where display line of tab page
+set wrap "long line will display in second line
+set showcmd "show command 
+set wildmenu "improve vim command-line complete
+set wildmode=list:longest,full
+"set balloondelay "the time delay before popup out mill-second
+"set ballooneval "enable popup expression evaluate
+"set balloonexpr "calculate the expression on popup display
+"set binary "read/write/edit file in binary format
+"set browsedir "the dir start to browse file
+"set bufhidden "the behavior when the buffer dont display on window
+"set buflisted "is buffer displayed on buffer list
+"set buftype "the special type of buffer
+"set casemap "specify how to change letter`s case
+"set cedit "the key to open command line window
+"set charconvert "expression to finish char encoding
+set clipboard=unnamedplus "use clipboard as an unnamed register
+"set cmdheight "set the line number of command line use
+"set cmdwinheight "set the height of command line window
+"set columns "set the columns of screen display
+"set colorcolumn "highlight specified column
+"set comments "set the pattern to start comment line
+"set commentstring "set comment template,logo to folder"
+"set compatible "make vim works compatible as vi
+"set complete "specify how auto-complete works on Insert mode
+"set completefunc "the function used to complete on Insert mode
+set completeopt=longest,menu "the options for complete on Insert mode
+"set concealcursor "whether hidden the text in the cursor line that is hiddenable
+"set conceallevel "whether to display hiddenable text
+"set list "show unprintable chars
+"set listchars=tab:\ ,trail:*,extends:#,nbsp:. "highlight problematic whitespace
+set nojoinspaces "prevents inserting two spaces after punctuation on a join
+set splitright "puts new vsplit windows to the right side
+set splitbelow "puts new split windows to the bottom of the current 
+"set statusline "custome format of status line
+"set term "name of terminal
+"set termencoding "encoding of terminal
+"set terse "simplify some message
+"set textwidth "the maximum width of text width
+"set title "let vim to set window's title
+set history=1000
+"set spell "check spell
+"set spellfile "the file to store zg/zw words
+set autoindent "decided the new line indent by the upper line
+set tabstop=4 "make all <tab> be 4 space width
+set softtabstop=4
+set shiftwidth=4
+set expandtab "don't use space to replace <tab>
+set smarttab "using <tab> in the beginning of line or paragraph
+set ignorecase  "let vim don't be case sensitive
+set smartcase "if you type an Upper case, will let search be case-sensitive
+set mouse=a "let mouse can be used in vim
+set mousemodel=popup 
+set mousehide "hide the mouse cursor when typing
+set backspace=indent,eol,start " backspace for dummies
+set linespace=0 "no extra spaces between rows
+set viewoptions=folds,options,cursor,unix,slash
+set fileformats=unix,mac,dos "compatibility for unix/windows
+set hidden "allow buffer switching without saving
+"set backup "backup is nice, do not like keep backup files in system
+"set backupcopy "backup using copy not change the file name
+"set backupdir=~/.swp "the dir name used to backup file
+"set backupext "the extend for backup file name
+"set backupskip "don't backup file when match the given patterns'
+"background = dar, light
+set background=dark 
+"set diff "use diff mode on current window
+"set diffexpr "get expression that diff file using
+"set diffopt "use diff mode option
+set directory=~/.swp "the dir name list for swap files
+"set encoding "the encoding method used internal
+"set endofline "write new-line char in the end of file
+"set equalalways "make all windows have the same size automaticaly
+"set equalprg "the outter command used by =
+"set errorbells "ring a bell when has error messages
+"set fileencoding "encoding format for multiple byte text
+"set fileencodings "encoding formats used to participate auto detect 
+"set foldopen "set the command to open fold
+"set foldtext "display expression used to close fold
+set icon "allow vim to set text of window icon
+"set iconstring "the string vim text icon using
+"set iskeyword "the chars that keywords can use
+"set isfname "the chars that filename can use
+"set isident "set the chars that identifers can use
+"set isprint "chars that can display
+"set key "the key used to encode
+"set lines "display lines of screen
+"set lisp "auto lisp indent
+"set linebreak "
+"set loadplugins "invoke plugin script when start
+set viminfo+=! "keep global variables
+set visualbell "make bell visual instead of ring
+"set cursorbind "when move cursor also move in other window
+set cursorline "highlight current line
+"set cursorcolumn "highlight current column
+set shortmess=atI "don't show the default vim startup
+set autoread "auto load file when it's changed outside of vim
+set autowrite "auto save file when file has something changed
+set magic "change the special chars used in search pattern
+set confirm "confirm when process unsaved or readonly file
+set showmatch "highlight matched brace
+set matchtime=1
+set tags+=./tags,tags,~/.vimtags " set tags file place
+set scrolloff=3 "cursor move to the top or bottom keep 3 line space
+
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+
+set relativenumber
+
+
+
+"########################################
+" common abbrevs configurations
+"########################################
+iabbrev teh the
+iabbrev taht that
+iabbrev thta that
+iabbrev coulmn column
+iabbrev colunm column
+iabbrev nwe  new
+iabbrev publc public 
+iabbrev publci public 
+iabbrev priate private 
+iabbrev praviet private
+iabbrev staci static
+iabbrev rwo row
+iabbrev lenth length
+iabbrev lenght length
+iabbrev lenthe length
+iabbrev seiz  size
+iabbrev fro for
+iabbrev retun return
+iabbrev retrun return
+
+
+
+
+
+set shell=/bin/bash
+set shellcmdflag+=i
+
+
+"mappings
+
+"########################################"
+" Config vim mappings
+"########################################"
+
+"########################################"
+" Use Space key as leader key
+"########################################
+let mapleader = "\<Space>"
+inoremap <Space><Space> <Space>
+ 
+"########################################"
+"Ant Deploy Mappings
+"########################################
+map <leader>dp	:w<CR>:!ant <CR>
+map <leader>rd  :!ant exploded-ear-clean;ant;<CR>
+
+"########################################"
+"Django manage.py configurations
+"########################################
+nnoremap <leader>pmm :!python manage.py makemigrations
+nnoremap <leader>pcm :!python manage.py migrate<CR>
+nnoremap <leader>ps  :!python manage.py shell<CR>
+nnoremap <leader>prs :!python manage.py runserver<CR>
+
+"########################################"
+"Vim window navigation mappings"
+"########################################
+nmap ,b  0zz
+nmap ,e  $zz
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+
+"########################################"
+"vim tab navigation mappings
+"########################################
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+inoremap <C-Left> <Esc>:tabprevious<CR>
+inoremap <C-Right> <Esc>:tabnext<CR>
+""nnoremap <C-u> :tabprevious<CR>
+""nnoremap <C-n> :tabnext<CR>
+""inoremap <C-u> <Esc>:tabprevious<CR>
+""inoremap <C-n> <Esc>:tabnext<CR>
+
+"########################################"
+"Quote Match pairs 
+"########################################
+nmap <leader>pa %
+
+
+"########################################"
+"Line insert Mappings
+"########################################
+nnoremap 2o o<CR><Esc>ki
+nnoremap o o<c-o>zz
+
+"########################################"
+"Window adjust Mappings
+"########################################
+nmap n nzz
+nmap N Nzz
+nmap gg ggzz 
+nmap G  Gzz
+
+
+"########################################"
+"Save Mappings
+"########################################
+nnoremap <leader>w   :w<CR>
+
+"########################################"
+"Delete Mappings
+"########################################
+nnoremap de d$
+nnoremap db d0
+nnoremap dd dd
+"inoremap dd <Esc>dd
+
+"########################################"
+"Copy&Paste Mappings
+"########################################
+"copy all the buffer content
+map <leader>ya  <Esc>ggvG$"+y
+"copy until the end of line
+nnoremap ye y$
+"copy until the beginning of line
+nnoremap yb y^
+"copy all the content into system clipboad
+map <leader>ys "+yy
+"paste the content from system clipboard
+map <leader>p "+p
+
+
+"########################################
+"Esc key Mappings
+"########################################
+inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kk <Esc>
+
+
+"########################################
+"Exits Mappings
+"########################################
+inoremap ,w	 <Esc>:w<CR>
+nnoremap ,w	 :w<CR>
+nnoremap ,q :q<CR>
+nnoremap ,qa :qa<CR>
+nnoremap ,wq :wq<CR>
+nnoremap ,wqa :wqa<CR>
+
+
+"########################################"
+"Change letter case
+"########################################
+nnoremap gue gu$
+nnoremap gub gu^
+nnoremap gUe gU$
+nnoremap gUb gU^
+
+"########################################"
+"Update Actions 
+"########################################
+map <leader>e :e<CR>
+map <leader>x :x<CR>
+
+
+
+"########################################"
+"Search Actions
+"########################################
+map <leader>f :tabfind 
+
+
+"########################################"
+"Turn off disturb message prompt
+"########################################
+map  q: :q
+
+
+
+
+
+
+"########################################"
+" Autocomplete match bracks
+"########################################
+inoremap <leader>( ()<Esc>i
+inoremap <leader>[ []<Esc>i
+inoremap <leader>{ {}<Esc>i
+inoremap <leader>< <><Esc>i
+

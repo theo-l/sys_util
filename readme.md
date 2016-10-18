@@ -6,17 +6,20 @@
 
 
 
-##2. 安装个人偏好设置相关的 Github 仓库 ##
-    
-    git_repositories_install.sh
+##2. Shell的个人偏好相关设置 ##
+    将 shell/shell_startup.sh 配置到系统的 .zshrc/.bashrc 中以便开启个人的shell偏好设置
 
+    bin/ 目录中为个人定制的命令偏好设置
 
 ##3. Vim 相关环境配置 ##
     
     vim_config.sh
     vim/
+        autoload/
+            plug.vim #该文件为 vim-plug 插件管理器
+
         config/ # 在vimrc文件中引用的配置文件列表
-                plugin_config.vim  # 插件列表以及配置文件
+                plugin_config.vim  # 插件列表以及配置文件, 使用 vim-plug 作为插件管理器
                 common_settings.vim # vim 的通用设置
                 function_config.vim # 个人定制函数文件
                 filetype_config.vim # 个人文件类型配置文件
@@ -27,7 +30,7 @@
         colors/ # Vim 配色方案文件目录
                 ...
         after/
-            ftplugin/
+            ftplugin/ # 目录中为个人对于文件类型的特定设定
                 css.vim
                 html.vim
                 java.vim
@@ -40,7 +43,7 @@
                 zsh.vim
                 
         plugin/
-            templates.vim
+            templates.vim # 该插件为不同文件类型的初始化模板管理器， 用来创建初始化模板
 
         templates/ # 文件类型的新建文件模板
             html
@@ -50,3 +53,10 @@
             zsh
 
 
+##4. 配置文件目录 ##
+    
+    config/
+        ideavimrc # Pycharm 的 ideavim 插件的配置文件
+        vimrc # vim 的配置文件
+        vrapperrc # Eclipse 的 vrapper 插件配置文件
+        tmux.config # tmux的配置文件

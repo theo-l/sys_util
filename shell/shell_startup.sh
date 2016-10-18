@@ -2,6 +2,16 @@
 
 DEBUG=0
 
+export SHELL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
+export SHELL_PATH_HOME=$(python -c "import os; print os.path.dirname('$SHELL_HOME')")/bin
+export PATH=$PATH:$SHELL_PATH_HOME
+
+source $SHELL_HOME/shell_env.sh
+source $SHELL_HOME/java_env.sh
+source $SHELL_HOME/python_env.sh
+source $SHELL_HOME/shell_alias.sh
+
+
 _debug() {
     if [[ $DEBUG == 1 ]]; then
         echo -e "\n----DEBUG:$1----\n"
@@ -14,32 +24,9 @@ _sep() {
 }
 
 
-###########################################################
-# 特定的系统环境变量 导入
-###########################################################
-export SHELL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
-export SHELL_PATH_HOME=$(python -c "import os; print os.path.dirname('$SHELL_HOME')")/bin
-export PATH=$PATH:$SHELL_PATH_HOME
-source $SHELL_HOME/shell_env.sh
-source $SHELL_HOME/shell_alias.sh
-source $SHELL_HOME/java_env.sh
-source $SHELL_HOME/python_env.sh
-
-############################################################
-# TEST code
-############################################################
-_debug $SHELL_HOME
-_debug $SHELL_PATH_HOME
-_debug $PATH
-
-
-
-
-############################################################
-# 更新本地的 github 软件仓库列表
-############################################################
-updating_local_repositories() {
+__updating_local_repositories() {
     _sep "Updating local repositories"
+
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         printf "\nUpdating local repository: ==={%-s}\n" $repo
         cd $repo
@@ -54,19 +41,26 @@ updating_local_repositories() {
 }
 
 
+_start_shell() {
 
-############################################################
-# 所有需要执行的动作都会在此逻辑中插入
-############################################################
-if [[ ! -f $SHELL_HOME/started ]]; then
+    _debug "starting up..."    
 
-    echo "starting up..."    
-    touch $SHELL_HOME/started 
-    updating_local_repositories
+    if [[ ! -f $SHELL_HOME/started ]]; then
+    
+        touch $SHELL_HOME/started 
+        __updating_local_repositories
+        
+        cd ~
+        #TODO
+        # MORE STARTUP ACTIONS ADD here
+    
+    else
+        _debug "Shell already started"
+    fi
+}
 
-    #TODO
-    # MORE STARTUP ACTIONS ADD here
 
-else
-    _debug "Shell already started"
-fi
+############################## 启动个人偏好的Shell相关设置 ##############################
+_start_shell
+
+

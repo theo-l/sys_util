@@ -1,0 +1,70 @@
+"Configuration file for vrapper in eclipse
+imap jj <Esc>
+imap kk <Esc>
+imap jk <Esc>
+
+
+"line delete
+nnoremap de d$
+nnoremap db d0
+nnoremap dd dd
+nnoremap dj jdd
+nnoremap dk kdd
+
+"search highlight
+nnoremap ,h :nohlsearch<CR>
+ 
+"line jump helper
+nnoremap ,b ^
+nnoremap ,e $
+nnoremap ,b <Esc>^
+nnoremap ,e <Esc>$
+
+"make copy action more easy
+nnoremap ye y$
+nnoremap yb y^
+
+"change letters case to avoid complicated typing
+nnoremap gUe gU$
+nnoremap gue gu$
+nnoremap gUb gU^
+nnoremap gub gu^
+
+nnoremap gj 5j
+nnoremap gk 5k
+
+"search file
+nnoremap ,f :find
+nnoremap ,tf :tabfind
+
+"save file
+nnoremap ,w :w<CR>
+inoremap ,w <Esc>:w<CR>
+
+"open current file in gvim 
+nnoremap ,v :vim
+
+"start command line 
+nnoremap ,c :
+
+"buffer jump and adjust
+nnoremap gg ggzz
+nnoremap G Gzz
+nnoremap n nzz
+nnoremap N Nzz
+
+"after copy and move the cursor to the end of the copied content
+nnoremap p p`]
+
+"--------------java abbrevs
+set autoindent
+set smartindent
+set hlsearch
+set incsearch
+set cursorline
+set ignorecase
+set smartcase
+set contentassistmode
+
+"-----------------------------------
+"abrevs not implemented in vrapper yet
