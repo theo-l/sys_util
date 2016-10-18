@@ -1,6 +1,5 @@
 #!/bin/bash
-
-DEBUG=1
+DEBUG=0
 
 _debug() {
     if [[ $DEBUG == 1 ]]; then
@@ -13,7 +12,18 @@ _sep() {
     echo -e "\n========== $1 ==========\n" 
 }
 
-export SHELL_HOME=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
+
+# $ZSH is set on zsh 
+# $BASH is set on bash
+# $version is set on tcsh
+# $shell is set on csh or tcsh
+if [[ ! -z $BASH ]]; then
+    export SHELL_HOME=$(cd ${BASH_SOURCE[0]%/*} && pwd )
+elif [[ ! -z $ZSH_NAME ]]; then
+    export SHELL_HOME=$(dirname $0)
+fi
+
+#export SHELL_HOME=$(dirname "$(readlink -f $0)")
 export SHELL_PATH_HOME=$(dirname $SHELL_HOME)/bin
 export PATH=$PATH:$SHELL_PATH_HOME
 
