@@ -8,15 +8,6 @@ _sep() {
     echo -e "\n========== $1 ==========\n" 
 }
 
-#msg="updated default"
-#
-#if [[ ! -z $1 ]]; then
-#    msg=$1
-#else
-#    echo -e "\nNo commit message, using default message instead!\n"
-#fi
-#
-#echo -e "committing $msg !\n"
 
 commit_and_push_repository() {
     msg="Default updating"
