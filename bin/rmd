@@ -1,5 +1,0 @@
-#!/bin/bash
-
-#this is a customized function to remove directory
-rm -rf $*
-
