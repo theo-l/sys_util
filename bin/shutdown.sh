@@ -1,5 +1,4 @@
 #!/bin/bash
-#script used to specify shutdown actions
 
 _sep() {
     echo -e "\n========== $1 ==========\n" 
@@ -9,9 +8,9 @@ _update_git_remote_repos() {
     _sep "Updating project at shutdown" 
 
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
-        printf "Updating project: %-s\n" $pro
         cd $pro
         if [[ -d ./.git ]]; then
+            printf "Updating project: %-s\n" $pro
             git add -A ; git commit -m 'push by shutdown'; git push origin master;
         else
             continue
