@@ -1,16 +1,6 @@
 #!/bin/bash
 
-DEBUG=0
-
-export SHELL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
-export SHELL_PATH_HOME=$(python -c "import os; print os.path.dirname('$SHELL_HOME')")/bin
-export PATH=$PATH:$SHELL_PATH_HOME
-
-source $SHELL_HOME/shell_env.sh
-source $SHELL_HOME/java_env.sh
-source $SHELL_HOME/python_env.sh
-source $SHELL_HOME/shell_alias.sh
-
+DEBUG=1
 
 _debug() {
     if [[ $DEBUG == 1 ]]; then
@@ -22,6 +12,20 @@ _debug() {
 _sep() {
     echo -e "\n========== $1 ==========\n" 
 }
+
+export SHELL_HOME=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
+export SHELL_PATH_HOME=$(dirname $SHELL_HOME)/bin
+export PATH=$PATH:$SHELL_PATH_HOME
+
+_debug $SHELL_HOME
+
+source $SHELL_HOME/shell_env.sh
+source $SHELL_HOME/java_env.sh
+source $SHELL_HOME/python_env.sh
+source $SHELL_HOME/shell_alias.sh
+
+
+
 
 
 __updating_local_repositories() {
