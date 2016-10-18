@@ -3,6 +3,12 @@ set -eu
 
 GIT_HOME=~/gitworkspace
 GIT_REPO_URL="https://github.com/theo-l"
+
+if [[ ! -z $BASH ]]; then
+    UTIL_HOME=$(cd ${BASH_SOURCE[0]%/*} && pwd )
+elif [[ ! -z $ZSH_NAME ]]; then
+    UTIL_HOME=$(dirname $0)
+fi
 UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
 UTIL_CONFIG_HOME=$UTIL_HOME/config
 SHELL_HOME=$UTIL_HOME/shell
@@ -247,6 +253,7 @@ __other_config() {
 if [[ ! -d $GIT_HOME ]]; then
     mkdir $GIT_HOME
 fi
+
 __install_common_repository_profil_list
 __install_common_software_profil_list
 __git_config
