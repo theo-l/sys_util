@@ -12,7 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
-Plug 'Valloric/YouCompleteMe' "now is now sure to use it
+Plug 'Valloric/YouCompleteMe' 
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
