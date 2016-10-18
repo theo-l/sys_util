@@ -3,7 +3,6 @@
 ############################################################
 #导出个人偏好的系统环境变量
 ############################################################
-
 export GIT_HOME=~/gitworkspace
 export PROJECT_HOME=~/projects
 export DOWNLOAD_HOME=~/Downloads
