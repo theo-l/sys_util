@@ -11,7 +11,11 @@ _update_git_remote_repos() {
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         printf "Updating project: %-s\n" $pro
         cd $pro
-        git add -A ; git commit -m 'push by shutdown'; git push origin master;
+        if [[ -d ./.git ]]; then
+            git add -A ; git commit -m 'push by shutdown'; git push origin master;
+        else
+            continue
+        fi
     done
 }
 
