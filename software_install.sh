@@ -43,7 +43,7 @@ common_software_profil_list=(
             build-essential
             cmake
             
-        # silversearch-ag
+            silversearcher-ag
 )
 
 typeset -a common_repository_profil_list
@@ -72,7 +72,7 @@ __install_common_repository_profil_list() {
         else
             cd $GIT_HOME/$repo
             printf "==========updating %-s\n" $GIT_HOME/$repo
-            git fetch origin; git pull origin master
+            # git fetch origin; git pull origin master
             cd $current_path
         fi
     done
@@ -106,6 +106,8 @@ __git_config() {
 
 __python_config() {
     __sep "Configuring python" 
+    sudo pip install --upgrade pip
+    sudo pip3 install --upgrade pip
     #安装python虚拟环境配置工具
     if [[ ! -z $(pip list | grep virtualenv) ]]; then
         echo "virtualenv already exists"
@@ -275,5 +277,6 @@ __python_config
 __tmux_config
 __zsh_config
 __powerline_font_config
-__vim_config
 __other_config
+
+__vim_config
