@@ -2,6 +2,7 @@
 #set -eu
 
 GIT_HOME=~/gitworkspace
+PROJECT_HOME=~/projects
 GIT_REPO_URL="https://github.com/theo-l"
 
 if [[ -z $BASH ]]; then
@@ -24,6 +25,8 @@ typeset -a common_software_profil_list
 common_software_profil_list=(
         #    vim 
         #    vim-gnome 
+	        w3m
+	        ncurses-dev
             git 
             tmux 
             ipython 
@@ -37,8 +40,10 @@ common_software_profil_list=(
             htop 
             nload 
             curl
+            build-essential
+            cmake
             
-        # silversearch-ag
+            silversearcher-ag
 )
 
 typeset -a common_repository_profil_list
@@ -67,7 +72,7 @@ __install_common_repository_profil_list() {
         else
             cd $GIT_HOME/$repo
             printf "==========updating %-s\n" $GIT_HOME/$repo
-            git fetch origin; git pull origin master
+            # git fetch origin; git pull origin master
             cd $current_path
         fi
     done
@@ -101,6 +106,8 @@ __git_config() {
 
 __python_config() {
     __sep "Configuring python" 
+    sudo pip install --upgrade pip
+    sudo pip3 install --upgrade pip
     #安装python虚拟环境配置工具
     if [[ ! -z $(pip list | grep virtualenv) ]]; then
         echo "virtualenv already exists"
@@ -153,7 +160,7 @@ __zsh_config() {
 
     # 如果 oh-my-zsh 插件没有安装到系统中时，需要对其进行安装
     if [[ ! -d ~/.oh-my-zsh ]]; then
-        cd "GIT_HOME/oh-my-zsh"
+        cd "$GIT_HOME/oh-my-zsh"
         source ./tools/install.sh
         cd $current_path
     fi
@@ -184,7 +191,9 @@ __powerline_font_config() {
         echo -e "\nInstalling powerline fonts\n"        
 
         # 将 powerline 字体安装到系统中
-        source "$GIT_HOME/fonts/install.sh"
+        cd "$GIT_HOME/fonts"
+        source "./install.sh"
+        cd $current_path
 
         # 刷新系统中的字体
         fc-cache -r
@@ -201,22 +210,25 @@ __vim_config() {
     
     __sep "Configuring Vim"
 
+    if [[ -z $(which vim) ]]; then
+    
+#       TODO : vim maybe need to be installed manually
+        cd $GIT_HOME/vim
+        ./configure --with-features=huge \
+                --enable-multibyte \
+                --enable-pythoninterp \
+                --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
+                --enable-python3interp \
+                --with-python3-config-dir=/usr/lib/python3.5/config-x86_64-linux-gnu\
+                --enable-perlinterp \
+                --enable-cscope --prefix=/usr
 
-#    TODO : vim maybe need to be installed manually
-#    cd $GIT_HOME/vim
-#    ./configure --with-features=huge \
-#            --enable-multibyte \
-#            --enable-rubyinterp \
-#            --enable-pythoninterp \
-#            --with-python-config-dir=/usr/lib/python2.7/config \
-#            --enable-python3interp \
-#            --with-python3-config-dir=/usr/lib/python3.5/config \
-#            --enable-perlinterp \
-#            --enable-luainterp \
-#            --enable-cscope --prefix=/usr
-#    make VIMRUNTIMEDIR=/usr/share/vim/vim80; sudo make install
+#                --enable-luainterp \
+#                --enable-rubyinterp \
+        make VIMRUNTIMEDIR=/usr/share/vim/vim80; sudo make install
 
 
+    fi
 
 
     if [[ ! -d ~/.vim ]]; then
@@ -257,6 +269,7 @@ if [[ ! -d $GIT_HOME ]]; then
     mkdir $GIT_HOME
 fi
 
+
 __install_common_repository_profil_list
 __install_common_software_profil_list
 __git_config
@@ -264,5 +277,6 @@ __python_config
 __tmux_config
 __zsh_config
 __powerline_font_config
-__vim_config
 __other_config
+
+__vim_config
