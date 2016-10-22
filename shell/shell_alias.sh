@@ -45,6 +45,10 @@ alias cd3py="cd $PYTHON_ENV_HOME/py3"
 
 alias rmd="rm -rf"
 
+########## Django manager command shortcut 
+alias damm="./manage.py makemigrations"
+alias dam="./manage.py migrate"
+
 ############################################################
 
 
