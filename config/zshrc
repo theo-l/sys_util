@@ -99,4 +99,4 @@ source $ZSH/oh-my-zsh.sh
 
 #set keyboard map
 #setxkbmap -option ctrl:nocaps
-source /home/liang/projects/sys_util/shell/shell_startup.sh
+source /home/gui/sys_util/shell/shell_startup.sh
