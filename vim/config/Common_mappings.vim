@@ -105,13 +105,13 @@ inoremap ,w	 <Esc>:w<CR>
 nnoremap ,w	 :w<CR>
 
 " 将每次退出时的状态写入到 ~/.vim/session.vim 文件中
-nnoremap ,q :mksession! ~/.vim/session.vim<CR>:q<CR>
-nnoremap ,qa :mksession! ~/.vim/session.vim<CR>:qa<CR>
-nnoremap ,wq :mksession! ~/.vim/session.vim<CR>:wq<CR>
-nnoremap ,wqa :mksession! ~/.vim/session.vim<CR>:wqa<CR>
+nnoremap ,q :mksession! ./session.vim<CR>:q<CR>
+nnoremap ,qa :mksession! ./session.vim<CR>:qa<CR>
+nnoremap ,wq :mksession! ./session.vim<CR>:wq<CR>
+nnoremap ,wqa :mksession! ./session.vim<CR>:wqa<CR>
 
 " 恢复之前退出 Vim 时的状态
-nnoremap ,ss :source ~/.vim/session.vim<CR>
+nnoremap ,ss :source ./session.vim<CR>
 
 "########################################"
 " 将字母转换为小写
@@ -225,9 +225,13 @@ let g:NERDTreeIndicatorMapCustom = {
 "########################################"
 "Taglist configuration
 "########################################
-map <leader>tl :TlistToggle<CR>
-let Tlist_Use_Right_Window=1
+"map <leader>tl :TlistToggle<CR>
+"let Tlist_Use_Right_Window=1
 
+"########################################"
+"TagBar configuration
+"########################################
+map <leader>tl :TagbarToggle<CR>
 
 
 "########################################"
@@ -371,9 +375,9 @@ let g:user_emmet_leader_key="<C-E>"
 
 
 
-
-
-
+"##############################
+" UltiSnipts 配置
+"##############################
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<enter>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -381,3 +385,42 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+"##############################
+" IndentLine 配置
+"##############################
+"let g:indentLine_char='|'
+let g:indentLine_color_dark=1
+let g:indentLine_color_tty_light=7
+let g:indentLine_setConceal=0
+"let g:indentLine_setColors=0
+"let g:indentLine_enabled=0
+
+
+
+"##############################
+" syntastic 配置
+"##############################
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:syntastic_python_checkers=['pylint','python -E']
+"disable warning messages displaying
+
+" make some messages do not display
+" regex:  ignore [no-member] error using regex expression
+" !level: limit messages only for errors using level
+let g:syntastic_quiet_messages = {
+            \ "regex":   'no-member',
+            \ "!level":  "errors"
+            \ }
+"            \ "file:p":   '.*' 
+"            \ "type":    "style",
+
+    

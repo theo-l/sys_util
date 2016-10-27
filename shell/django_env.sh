@@ -20,9 +20,10 @@ django_cmds=(
     makemessages
     makemigrations
     migrate
-    runserver
-    sendtestemail
     shell
+    runserver
+    testserver
+    sendtestemail
     showmigrations
     sqlflush
     sqlmigrate
@@ -30,7 +31,8 @@ django_cmds=(
     squashmigrations
     startapp
     test
-    testserver
+    help
+    version
 #   using with django-admin  
 #   startproject
 
@@ -72,11 +74,21 @@ run_django() {
     fi
 
     if [[ ! -f ./manage.py ]]; then
-        echo -e "===Your are not in a django project dir==="
-        return
+
+        if [[ ! -f ../manage.py ]]; then
+            echo -e "===Your are not in a django project dir==="
+            return
+        else
+            cur_dir=$(pwd)
+            cd ..
+            ./manage.py $@
+            cd $cur_dir
+
+        fi
+    else
+        ./manage.py $@
     fi
 
-    ./manage.py $@
 }
 
 # 手动创建 django 的相关命令
