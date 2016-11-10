@@ -10,10 +10,10 @@ _update_git_remote_repos() {
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         cd $pro
         if [[ -d ./.git ]]; then
-            printf "Updating project: %-s\n" $pro
-            git add -A ; git commit -m 'push by shutdown'; git push origin master;
-        else
-            continue
+            if [[ -z $(git status| grep "nothing") ]]; then
+                printf "Updating project: %-s\n" $pro
+                git add -A ; git commit -m 'push by shutdown'; git push origin master;
+            fi
         fi
     done
 }
