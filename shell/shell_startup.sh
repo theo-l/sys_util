@@ -43,9 +43,8 @@ __updating_local_repositories() {
     _sep "Updating local repositories"
 
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
-        printf "\nUpdating local repository: ==={%-s}\n" $repo
         
-        if [[ $rep =~ '.*/\..*$' ]]; then
+        if [[ $repo =~ '.*/\..*$' || $repo == $PROJECT_HOME ]]; then
             continue
         fi
 
@@ -57,6 +56,7 @@ __updating_local_repositories() {
         if [[ ! -d ./.git ]]; then
             continue
         else
+            printf "\nUpdating local repository: ==={%-s}\n" $repo
             git fetch origin; git pull origin master;
         fi
     done
