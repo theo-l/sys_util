@@ -45,7 +45,7 @@ __updating_local_repositories() {
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         printf "\nUpdating local repository: ==={%-s}\n" $repo
         
-        if [[ $rep =~ '.*/\.[\w\-_]*$' ]]; then
+        if [[ $rep =~ '.*/\..*$' ]]; then
             continue
         fi
 
