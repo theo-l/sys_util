@@ -10,7 +10,7 @@ if [[ ! -z $BASH ]]; then
 elif [[ !  -z ${ZSH_NAME:''} ]]; then
     UTIL_HOME=$(dirname $0)
 fi
-# UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
+
 UTIL_CONFIG_HOME=$UTIL_HOME/config
 SHELL_HOME=$UTIL_HOME/shell
 SHELL_PATH_HOME=$UTIL_HOME/bin

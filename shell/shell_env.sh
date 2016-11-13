@@ -9,6 +9,7 @@ export DOWNLOAD_HOME=~/Downloads
 export DOCUMENT_HOME=~/Documents
 export SOFTWARE_HOME=~/softwares
 export PYTHON_ENV_HOME=~/.virtualenv
+export SOFTWARE_HOME=~/Softwares
 export MUSIC_HOME=~/Music
 export PICTURE_HOME=~/Pictures
 export VIDEO_HOME=~/Videos

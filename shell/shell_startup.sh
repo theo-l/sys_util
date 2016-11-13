@@ -44,8 +44,15 @@ __updating_local_repositories() {
 
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         printf "\nUpdating local repository: ==={%-s}\n" $repo
-        cd $repo
+        
+        if [[ $rep =~ '.*/\.[\w\-_]*$' ]]; then
+            continue
+        fi
 
+        cd $repo
+        
+        
+        
         #过滤掉非 git 目录
         if [[ ! -d ./.git ]]; then
             continue
