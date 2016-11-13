@@ -5,12 +5,12 @@ GIT_HOME=~/gitworkspace
 PROJECT_HOME=~/projects
 GIT_REPO_URL="https://github.com/theo-l"
 
-if [[ -z $BASH ]]; then
+if [[ ! -z $BASH ]]; then
     UTIL_HOME=$(cd ${BASH_SOURCE[0]%/*} && pwd )
-elif [[  -z ${ZSH_NAME:''} ]]; then
+elif [[ !  -z ${ZSH_NAME:''} ]]; then
     UTIL_HOME=$(dirname $0)
 fi
-UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
+# UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
 UTIL_CONFIG_HOME=$UTIL_HOME/config
 SHELL_HOME=$UTIL_HOME/shell
 SHELL_PATH_HOME=$UTIL_HOME/bin
@@ -228,6 +228,11 @@ __vim_config() {
         make VIMRUNTIMEDIR=/usr/share/vim/vim80; sudo make install
 
 
+    fi
+
+    # create backup file directory
+    if [[ ! -d ~/.swp ]]; then
+        mkdir ~/.swp
     fi
 
 

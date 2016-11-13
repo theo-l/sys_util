@@ -4,6 +4,7 @@ syntax on "enable vim to detective the file`s syntax
 filetype plugin on "load filetype plugin
 filetype indent on "load related indent file for specific filetype
 
+set nocompatible
 set incsearch "increment search
 set hlsearch "highlight search
 set number "show line number
