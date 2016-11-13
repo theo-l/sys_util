@@ -64,6 +64,7 @@ _start_shell() {
 
     _debug "starting up..."    
 
+    # flag to indicate if shell is started on system
     if [[ ! -f $SHELL_HOME/started ]]; then
     
         touch $SHELL_HOME/started 
