@@ -44,21 +44,18 @@ __updating_local_repositories() {
 
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         
+        # ignore the project which name start with '.'
         if [[ $repo =~ '.*/\..*$' || $repo == $PROJECT_HOME ]]; then
             continue
         fi
 
-        cd $repo
-        
-        
-        
-        #过滤掉非 git 目录
-        if [[ ! -d ./.git ]]; then
+        # ignore non git repository dirs
+        if [[ ! -d $repo/.git ]]; then
             continue
-        else
-            printf "\nUpdating local repository: ==={%-s}\n" $repo
-            git fetch origin; git pull origin master;
         fi
+
+        printf "\nUpdating local repository: ==={%-s}\n" $repo
+        cd $repo &&  git fetch origin; git pull origin master;
     done
 }
 
