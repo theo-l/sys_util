@@ -16,3 +16,4 @@ export VIDEO_HOME=~/Videos
 export WORKSPACE_HOME=~/workspace
 export EDITOR=vim #使用vim作为系统的默认编辑器
 export UTIL_HOME=$(dirname $SHELL_HOME)
+
