@@ -218,7 +218,7 @@ if has('gui_running')
     colorscheme molokai
 else
     if IsDay()
-        colorscheme solarized
+        colorscheme eclipse
     else
         colorscheme molokai
     endif
