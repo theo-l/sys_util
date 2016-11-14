@@ -29,7 +29,7 @@ __apt_install() {
 		if [[ -z $(which $soft) && -z $(dpkg --list | grep -E "\b${soft}[^-]") ]]; then
 
 			# If install  soft succeed
-			if [[  $($INSTALL_CMD $soft) && $? == 0 ]]; then
+			if [[  $($INSTALL_CMD $soft 2>&1) && $? == 0 ]]; then
                 
                 echo -e "$soft install succeed\n"
 				# record installed soft if not recorded before

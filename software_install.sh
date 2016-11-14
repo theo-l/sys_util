@@ -108,7 +108,9 @@ __python_config() {
     __sep "Configuring python" 
     sudo pip install --upgrade pip
     sudo pip3 install --upgrade pip
+    
     #安装python虚拟环境配置工具
+
     if [[ ! -z $(pip list | grep virtualenv) ]]; then
         echo "virtualenv already exists"
     else
@@ -117,6 +119,7 @@ __python_config() {
     fi
 
     #python 的虚拟环境默认目录为 ~/.virtualenv
+
     if [[ ! -d ~/.virtualenv ]]; then
         mkdir ~/.virtualenv
     fi
@@ -214,18 +217,24 @@ __vim_config() {
     
 #       TODO : vim maybe need to be installed manually
         cd $GIT_HOME/vim
-        ./configure --with-features=huge \
+        ./configure \
+                --prefix=/usr/local/ \
+                --with-features=huge \
                 --enable-multibyte \
+                --enable-cscope \
+                --enable-perlinterp=yes \
                 --enable-pythoninterp \
                 --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
                 --enable-python3interp \
                 --with-python3-config-dir=/usr/lib/python3.5/config-x86_64-linux-gnu\
-                --enable-perlinterp \
-                --enable-cscope --prefix=/usr
+                --enable-gui=yes \
+                --enable-gnome-check \
+                --enable-xim \
+                --enable-fontset \
+                --with-x \
+                --with-compiledby=$USER;
 
-#                --enable-luainterp \
-#                --enable-rubyinterp \
-        make VIMRUNTIMEDIR=/usr/share/vim/vim80; sudo make install
+        make VIMRUNTIMEDIR=/usr/local/share/vim/vim80; sudo make install
 
 
     fi
