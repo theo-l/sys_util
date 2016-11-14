@@ -1,5 +1,5 @@
 #!/bin/bash
-DEBUG=0
+DEBUG=1
 
 _debug() {
     if [[ $DEBUG == 1 ]]; then
