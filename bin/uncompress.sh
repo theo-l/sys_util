@@ -20,39 +20,34 @@ __uncompress_file() {
 	echo "$archived_file, $dest_dir"
 
 	# 解压 .zip 文件
-
 	if [[ $archived_file =~ .*.zip$ ]]; then
 		echo -e "This is a zip file\n"
 		__detect_cmd unzip
 		unzip $archived_file -d $dest_dir
 
 	# 解压 .tar.gz 文件
-
 	elif [[ $archived_file =~ .*.tar.gz$ ]]; then
 		echo -e "This is a gzip file\n"
 		__detect_cmd tar
 		tar -zxvf $archived_file -C $dest_dir
 
 	# 解压 .tar.bz2 文件
-
 	elif [[ $archived_file =~ .*.tar.bz2$ ]]; then
 		echo -e "This is a bzip file\n"
 		tar -jxvf $archived_file -C $dest_dir
 
 	# 解压 .tar 文件
-
 	elif [[ $archived_file =~ .*.tar$ ]]; then
 		echo -e "This is a simple tar file\n"
 		tar -xvf $archived_file -C $dest_dir
 
 	# 解压 .tar.Z 文件
-
 	elif [[ $archived_file =~ .*.tar.Z$ ]]; then
 		echo -e "This is a Z file\n"
 		tar -Zxvf $archived_file $dest_dir
 
-	# 解压 .rar 文件
 
+	# 解压 .rar 文件
 	elif [[ $archived_file =~ .*.rar$ ]]; then
 		echo -e "This is a rar file\n"
 		__detect_cmd unrar
