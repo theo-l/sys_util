@@ -2,6 +2,8 @@
 
 # 用来进行解压系统中的压缩文件的通用方法
 
+
+# 检测使用的系统命令是否存在，否则安装该命令
 __detect_cmd() {
 	$cmd=$1
 	if [[ -z $(which $cmd) ]]; then
@@ -9,6 +11,7 @@ __detect_cmd() {
 	fi
 }
 
+# 解压缩文件函数
 __uncompress_file() {
 
 	archived_file=$1
