@@ -121,7 +121,7 @@ endif
 set visualbell "make bell visual instead of ring
 "set cursorbind "when move cursor also move in other window
 set cursorline "highlight current line
-"set cursorcolumn "highlight current column
+set cursorcolumn "highlight current column
 set shortmess=atI "don't show the default vim startup
 set autoread "auto load file when it's changed outside of vim
 set autowrite "auto save file when file has something changed
