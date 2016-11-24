@@ -20,15 +20,18 @@ current_path=$(pwd)
 
 
 
-
 typeset -a common_software_profil_list
+
+# 个人偏好软件集
 common_software_profil_list=(
         #    vim 
         #    vim-gnome 
-	        w3m
+	        w3m #terminal web browser
 	        ncurses-dev
-            git 
-            tmux 
+            git  # version control
+            tmux # multiple screen
+            bpython
+            bpython3
             ipython 
             ipython3 
             python-dev 
@@ -36,17 +39,21 @@ common_software_profil_list=(
         #    python-mysqldb
             python-pip
             python3-pip
-            zsh 
-            htop 
-            nload 
-            curl
+            zsh  # bash-alternative shell
+            htop  # system monitor
+            nload  #network connection information
+            curl #download
             build-essential
             cmake
-            
             silversearcher-ag
+            alpine #email
+            cmus #music
+            tpp #slider expression
 )
 
 typeset -a common_repository_profil_list
+
+# 个人偏好 软件仓库集
 common_repository_profil_list=(
             fonts
             vim
