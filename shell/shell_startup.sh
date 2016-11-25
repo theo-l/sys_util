@@ -34,6 +34,7 @@ source $SHELL_HOME/java_env.sh
 source $SHELL_HOME/python_env.sh
 source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
+source $SHELL_HOME/git_env.sh
 
 
 
