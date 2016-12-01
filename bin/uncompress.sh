@@ -23,7 +23,7 @@
 
 # 检测使用的系统命令是否存在，否则安装该命令
 __detect_cmd() {
-	$cmd=$1
+	cmd=$1
 	if [[ -z $(which $cmd) ]]; then
 		sudo apt install $cmd
 	fi
