@@ -16,7 +16,7 @@ def update_projects():
     projects = os.listdir(project_base)
     for project in projects:
         if project.startswith("."):
-            print("hidden project :%s ignored" % (sep.join([project_base, project])))
+            print("Directory:%s ignored" % (sep.join([project_base, project])))
             continue
         project_path = sep.join([project_base, project])
 
@@ -28,7 +28,11 @@ def update_projects():
         repo = Repo(project_path)
         if repo.is_dirty():
             print("=========Updating: %s===========" % (project_path))
-            os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
+            os.system('''
+                git add -A;
+                git commit -m "commit by schedule";
+                git push origin master
+                ''')
         else:
             print("----------Repository {%s} is clean" % (project_path))
 
