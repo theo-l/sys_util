@@ -23,11 +23,13 @@ def update_projects():
         if not os.path.exists(sep.join([project_path, '.git'])):
             print("project: %s is not a git repository" % (project_path))
             continue
-        print("=========Updating: %s===========" % (project_path))
         os.chdir(project_path)
         repo = Repo(project_path)
         if repo.is_dirty():
+            print("=========Updating: %s===========" % (project_path))
             os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
+        else:
+            print
 
 
 if __name__ == "__main__":
