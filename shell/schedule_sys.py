@@ -8,6 +8,7 @@ import schedule
 import time
 from git import Repo
 
+# 个人 git 项目所在目录
 PROJECT_BASE = os.path.expanduser("~/projects")
 sep = os.path.sep
 
