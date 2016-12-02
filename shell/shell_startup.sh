@@ -63,7 +63,6 @@ __updating_local_repositories() {
     done
 }
 
-
 _start_shell() {
 
     _debug "starting up..."

@@ -6,6 +6,7 @@
 import os
 import schedule
 import time
+from git import Repo
 
 project_base = os.path.expanduser("~/projects")
 sep = os.path.sep
@@ -24,13 +25,9 @@ def update_projects():
             continue
         print("=========Updating: %s===========" % (project_path))
         os.chdir(project_path)
-        # os.system('''
-        #     if [[ -z $(git status| grep "nothing") ]]; then
-        #         printf "Updating project: %-s\n" $pro
-        #         git add -A ; git commit -m 'push by shutdown'; git push origin master;
-        #     fi
-        #     ''')
-        os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
+        repo = Repo(project_path)
+        if repo.is_dirty():
+            os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
 
 
 if __name__ == "__main__":
