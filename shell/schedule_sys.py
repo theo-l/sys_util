@@ -52,7 +52,7 @@ def shutdown_notification():
     import subprocess
     subprocess.Popen(
         ['notify-send', "Now it is time to shutdown the computer"])
-    os.system('shutdown.sh&')
+    os.system('suso shutdown -h 0')
 
 
 if __name__ == "__main__":
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     # 每隔30分钟调用一次程序更新本地项目文件
     schedule.every(30).minutes.do(update_projects)
     schedule.every(1).minutes.do(rest_notification)
-    schedule.every().day.at('19:28').do(shutdown_notification)
+    schedule.every().day.at('19:31').do(shutdown_notification)
 
     while True:
         schedule.run_pending()
