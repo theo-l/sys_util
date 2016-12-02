@@ -31,7 +31,7 @@ def update_projects():
         #     fi
         #     ''')
         os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
- 
+  
 
 if __name__ == "__main__":
 
