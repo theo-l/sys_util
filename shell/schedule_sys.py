@@ -8,17 +8,17 @@ import schedule
 import time
 from git import Repo
 
-project_base = os.path.expanduser("~/projects")
+PROJECT_BASE = os.path.expanduser("~/projects")
 sep = os.path.sep
 
 
 def update_projects():
-    projects = os.listdir(project_base)
+    projects = os.listdir(PROJECT_BASE)
     for project in projects:
         if project.startswith("."):
-            print("Directory:%s ignored" % (sep.join([project_base, project])))
+            print("Directory:%s ignored" % (sep.join([PROJECT_BASE, project])))
             continue
-        project_path = sep.join([project_base, project])
+        project_path = sep.join([PROJECT_BASE, project])
 
         if not os.path.exists(sep.join([project_path, '.git'])):
             print("project: %s is not a git repository" % (project_path))
