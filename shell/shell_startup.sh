@@ -36,10 +36,9 @@ source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
 source $SHELL_HOME/git_env.sh
 
-#if [[  ]]; then
-#    #statements
-#fi
-python3 $SHELL_HOME/schedule_sys.py &
+if [[ $( ps aux | grep -e "python3.*schedule_sys.py"|wc -l) < 3 ]]; then
+    python3 $SHELL_HOME/schedule_sys.py &
+fi
 
 
 
