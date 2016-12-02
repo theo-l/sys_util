@@ -29,6 +29,8 @@ export PATH=$PATH:$SHELL_PATH_HOME
 
 _debug $SHELL_HOME
 
+# 启用一系列环境配置文件
+
 source $SHELL_HOME/shell_env.sh
 source $SHELL_HOME/java_env.sh
 source $SHELL_HOME/python_env.sh
