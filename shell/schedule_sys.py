@@ -21,7 +21,7 @@ def update_projects():
             continue
         print("=========Updating: %s==========="%(project_path))
         os.chdir(project_path)
-        os.system('git add -A; git commit -m "commit by schedule; git push origin master"')
+        os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
 
 
 if __name__ == "__main__":
