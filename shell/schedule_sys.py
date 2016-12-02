@@ -29,7 +29,7 @@ def update_projects():
             print("=========Updating: %s===========" % (project_path))
             os.system('git add -A; git commit -m "commit by schedule"; git push origin master')
         else:
-            print
+            print("Repository {%s} is clean" % (project_path))
 
 
 if __name__ == "__main__":
