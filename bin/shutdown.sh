@@ -1,11 +1,11 @@
 #!/bin/bash
 
 _sep() {
-    echo -e "\n========== $1 ==========\n" 
+    echo -e "\n========== $1 ==========\n"
 }
 
 _update_git_remote_repos() {
-    _sep "Updating project at shutdown" 
+    _sep "Updating project at shutdown"
 
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         cd $pro

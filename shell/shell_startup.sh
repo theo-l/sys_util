@@ -48,7 +48,6 @@ __updating_local_repositories() {
     _sep "Updating local repositories"
 
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
-        
         # ignore the project which name start with '.'
         if [[ $repo =~ '.*/\..*$' || $repo == $PROJECT_HOME ]]; then
             continue
@@ -67,19 +66,15 @@ __updating_local_repositories() {
 
 _start_shell() {
 
-    _debug "starting up..."    
+    _debug "starting up..."
 
     # flag to indicate if shell is started on system
-    # 
     if [[ ! -f $SHELL_HOME/started ]]; then
-    
-        touch $SHELL_HOME/started 
+        touch $SHELL_HOME/started
         __updating_local_repositories
-        
         cd ~
         #TODO
         # MORE STARTUP ACTIONS ADD here
-    
     else
         _debug "Shell already started"
     fi
