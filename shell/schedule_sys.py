@@ -15,11 +15,11 @@ sep = os.path.sep
 
 def update_projects():
     project_names = os.listdir(PROJECT_BASE)
-    for project in project_names:
-        if project.startswith("."):
-            print("Directory:%s ignored" % (sep.join([PROJECT_BASE, project])))
+    for project_name in project_names:
+        if project_name.startswith("."):
+            print("Directory:%s ignored" % (sep.join([PROJECT_BASE, project_name])))
             continue
-        project_path = sep.join([PROJECT_BASE, project])
+        project_path = sep.join([PROJECT_BASE, project_name])
 
         if not os.path.exists(sep.join([project_path, '.git'])):
             print("project: %s is not a git repository" % (project_path))
