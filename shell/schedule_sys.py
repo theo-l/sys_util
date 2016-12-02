@@ -14,8 +14,8 @@ sep = os.path.sep
 
 
 def update_projects():
-    projects = os.listdir(PROJECT_BASE)
-    for project in projects:
+    project_names = os.listdir(PROJECT_BASE)
+    for project in project_names:
         if project.startswith("."):
             print("Directory:%s ignored" % (sep.join([PROJECT_BASE, project])))
             continue
