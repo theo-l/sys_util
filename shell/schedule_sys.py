@@ -25,7 +25,7 @@ def update_projects():
 
 if __name__ == "__main__":
     schedule.every(30).minutes.do(update_projects)
-    schedule.every().day.at('23:46').do(update_projects)
+    schedule.every().day.at('23:49').do(update_projects)
 
     while True:
         schedule.run_pending()
