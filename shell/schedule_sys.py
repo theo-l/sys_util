@@ -19,13 +19,14 @@ def update_projects():
         if not os.path.exists(sep.join([project_path,'.git'])):
             print("project: %s is not a git repository" %(project_path))
             continue
+        print("=========Updating: %s==========="%(project_path))
         os.chdir(project_path)
         os.system('git add -A; git commit -m "commit by schedule; git push origin master"')
 
 
 if __name__ == "__main__":
     schedule.every(30).minutes.do(update_projects)
-    schedule.every().day.at('23:49').do(update_projects)
+    schedule.every().day.at('23:51').do(update_projects)
 
     while True:
         schedule.run_pending()
