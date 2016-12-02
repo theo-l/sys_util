@@ -27,7 +27,7 @@ def update_projects():
         os.chdir(project_path)
         repo = Repo(project_path)
         if repo.is_dirty():
-            print("=========Updating: %s===========" % (project_path))
+            print("=========Updating: %s " % (project_path))
             os.system('''
                 git add -A;
                 git commit -m "commit by schedule";
