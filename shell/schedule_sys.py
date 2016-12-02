@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # encoding:utf-8
 
+# 个人偏好系统调度器程序
+
 import os
 import schedule
 import time
@@ -25,8 +27,9 @@ def update_projects():
 
 
 if __name__ == "__main__":
-    schedule.every(1).minutes.do(update_projects)
-    schedule.every().day.at('23:53').do(update_projects)
+
+    # 每隔30分钟调用一次程序更新本地项目文件
+    schedule.every(30).minutes.do(update_projects)
 
     while True:
         schedule.run_pending()
