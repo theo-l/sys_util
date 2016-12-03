@@ -29,24 +29,29 @@ PROJECT_BASE = os.path.expanduser("~/projects")
 sep = os.path.sep
 
 
-def schedule_job(interval=None, unit='minutes', at=None, start_day=None):
+def schedule_job(interval=None, unit=None, at=None, start_day=None):
 
     def job_wrapper(func):
+        # schedule at a specific time of weekday or day or hour
+        if at is not None:
+            if start_day is not None and unit is None:
+                if hasattr(schedule.every(), start_day):
+                    getattr(schedule.every(), start_day).at(at).do(func)
+            if unit == DAYS:
+                getattr(schedule.every(), DAYS).at(
+                    at).do(func)
+            if unit == HOURS:
+                getattr(schedule.every(), HOURS).at(
+                    at).do(func)
+
+            # schedule job loop for every interval
+        else:
+            _interval = interval if interval is not None else 1
+
+            if unit in [SECONDS, MINUTES, HOURS]:
+                getattr(schedule.every(_interval), unit).do(func)
 
         def job_func(*args, **kwargs):
-
-            if at is not None:
-                schedule.every().day.at(at).do(func, *args, **kwargs)
-            elif interval and unit != WEEKS:
-
-                if unit == SECONDS:
-                    schedule.every(interval).seconds.do(func, *args, **kwargs)
-                elif unit == MINUTES:
-                    schedule.every(interval).minutes.do(func, *args, **kwargs)
-                elif unit == HOURS:
-                    schedule.every(interval).hours.do(func, *args, **kwargs)
-                elif unit == DAYS:
-                    schedule.every(interval).days.do(func, *args, **kwargs)
 
             func(*args, **kwargs)
 
@@ -55,12 +60,12 @@ def schedule_job(interval=None, unit='minutes', at=None, start_day=None):
     return job_wrapper
 
 
-@schedule_job(interval=1, unit='minutes')
+@schedule_job(interval=1, unit=MINUTES)
 def schedule_test():
     print("Testing Schedule ")
 
 
-@schedule_job(interval=30, unit='minutes')
+@schedule_job(interval=30, unit=MINUTES)
 def update_projects():
     # 更新个人项目目录中的所有项目目录
     project_names = os.listdir(PROJECT_BASE)
@@ -90,7 +95,7 @@ def update_projects():
             print("----------Repository {%s} is clean" % (project_path))
 
 
-@schedule_job(interval=1, unit="hours")
+@schedule_job(interval=1, unit=HOURS)
 def rest_notification():
     import subprocess
     subprocess.Popen(['notify-send', "It's time to have a rest!"])
