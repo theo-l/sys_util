@@ -43,3 +43,4 @@ alias git_mv="git mv"
 alias git_log="git log"
 
 alias git_log_oneline="git log --oneline"
+set +eu
