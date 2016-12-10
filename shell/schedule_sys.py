@@ -64,12 +64,20 @@ def schedule_job(interval=None, unit=None, at=None, start_day=None):
 def schedule_test():
     print("Testing Schedule ")
 
+ignored_repos = [
+        "jco-backend-python", 
+        "dangyuan-python"
+        ]
 
 @schedule_job(interval=30, unit=MINUTES)
 def update_projects():
     # 更新个人项目目录中的所有项目目录
     project_names = os.listdir(PROJECT_BASE)
     for project_name in project_names:
+        
+        # 这些目录软件仓库不需要自动更新
+        if project_name in ignored_repos:
+            continue
         if project_name.startswith("."):
             print("Directory:%s ignored" %
                   (sep.join([PROJECT_BASE, project_name])))
