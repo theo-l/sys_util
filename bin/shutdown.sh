@@ -8,6 +8,10 @@ _update_git_remote_repos() {
     _sep "Updating project at shutdown"
 
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
+        if [[ $(basename $pro) == 'jco_backend_python' || $(basename $pro) == 'dangyuan_python' ]]; then
+            printf "Working dir dont update automatically"
+            continue
+        fi 
         cd $pro
         if [[ -d ./.git ]]; then
             if [[ -z $(git status| grep "nothing") ]]; then

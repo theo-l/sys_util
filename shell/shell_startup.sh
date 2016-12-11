@@ -45,7 +45,7 @@ fi
 
 
 
-
+# 从远程软件仓库获取最新版本到本地项目目录中
 __updating_local_repositories() {
     _sep "Updating local repositories"
 
