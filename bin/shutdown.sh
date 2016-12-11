@@ -12,7 +12,7 @@ _update_git_remote_repos() {
 #        echo -e "$pro  $(basename $pro)\n"
         
         if [[ $(basename $pro) == 'jco-backend-python' || $(basename $pro) == 'dangyuan-python' ]]; then
-            printf "Working dir $pro dont update automatically"
+            printf "Working dir $pro dont update automatically\n"
             continue
         fi 
 
