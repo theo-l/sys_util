@@ -9,9 +9,9 @@ _update_git_remote_repos() {
 
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
 
-        echo -e "$pro  $(basename $pro)\n"
+#        echo -e "$pro  $(basename $pro)\n"
         
-        if [[ $(basename $pro) == 'jco_backend_python' || $(basename $pro) == 'dangyuan_python' ]]; then
+        if [[ $(basename $pro) == 'jco-backend-python' || $(basename $pro) == 'dangyuan-python' ]]; then
             printf "Working dir dont update automatically"
             continue
         fi 
