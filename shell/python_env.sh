@@ -11,4 +11,4 @@ export PATH=$PATH:$SOFTWARE_HOME/pycharm/bin
 #source ~/.virtualenv/py2/bin/activate
 
 # 每次打开终端时进入到python3的虚拟环境中
-source ~/.virtualenv/py3/bin/activate
+source ~/.virtualenv/dev2/bin/activate
