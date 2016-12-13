@@ -39,8 +39,8 @@ source $SHELL_HOME/shell_alias.sh
 source $SHELL_HOME/git_env.sh
 
 # 只允许该调度器运行在一个终端进程中
-if [[ $( ps aux | grep -e "python3.*schedule_sys.py"|wc -l) < 2 ]]; then
-    python3 $SHELL_HOME/schedule_sys.py &
+if [[ $( ps aux | grep -e "python.*schedule_sys.py"|wc -l) < 2 ]]; then
+    python $SHELL_HOME/schedule_sys.py &
 fi
 
 

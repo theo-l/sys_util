@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # encoding:utf-8
 
 # 个人偏好系统调度器程序
