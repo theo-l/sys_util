@@ -91,15 +91,15 @@ inoremap ,w	 <Esc>:w<CR>
 "########################################
 " 将每次退出时的状态写入到 ~/.vim/session.vim 文件中
 "########################################
-nnoremap ,q :mksession! ./session.vim<CR>:q<CR>
-nnoremap ,qa :mksession! ./session.vim<CR>:qa<CR>
-nnoremap ,wq :mksession! ./session.vim<CR>:wq<CR>
-nnoremap ,wqa :mksession! ./session.vim<CR>:wqa<CR>
+nnoremap ,q :mksession! ~/session.vim<CR>:q<CR>
+nnoremap ,qa :mksession! ~/session.vim<CR>:qa<CR>
+nnoremap ,wq :mksession! ~/session.vim<CR>:wq<CR>
+nnoremap ,wqa :mksession! ~/session.vim<CR>:wqa<CR>
 
 "########################################
 " 恢复之前退出 Vim 时的状态
 "########################################
-nnoremap ,ss :source ./session.vim<CR>
+nnoremap ,ss :source ~/session.vim<CR>
 
 "########################################"
 " 将字母转换为小写
