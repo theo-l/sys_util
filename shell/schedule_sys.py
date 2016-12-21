@@ -69,7 +69,7 @@ ignored_repos = [
         "dangyuan-python"
         ]
 
-@schedule_job(interval=30, unit=MINUTES)
+@schedule_job(interval=90, unit=MINUTES)
 def update_projects():
     # 更新个人项目目录中的所有项目目录
     project_names = os.listdir(PROJECT_BASE)
