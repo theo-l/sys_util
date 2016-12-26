@@ -66,7 +66,8 @@ def schedule_test():
 
 ignored_repos = [
         "jco-backend-python", 
-        "dangyuan-python"
+        "dangyuan-python",
+        'dangyuan'
         ]
 
 @schedule_job(interval=90, unit=MINUTES)
