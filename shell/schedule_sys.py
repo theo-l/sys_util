@@ -67,7 +67,11 @@ def schedule_test():
 ignored_repos = [
         "jco-backend-python", 
         "dangyuan-python",
-        'dangyuan'
+        'dangyuan',
+        'taiga-back',
+        'taiga-events',
+        'taiga-front-dist',
+        'taiga-front'
         ]
 
 @schedule_job(interval=90, unit=MINUTES)
