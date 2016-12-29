@@ -52,7 +52,7 @@ __updating_local_repositories() {
 
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
         # ignore the project which name start with '.'
-        if [[ $repo =~ '.*/\..*$' || $repo == $PROJECT_HOME ]]; then
+        if [[ $repo =~ '.*/\..*$' || $repo == $PROJECT_HOME || $repo =~ \./taiga.* || $repo =~ \./dangyuan.* ]]; then
             continue
         fi
 
