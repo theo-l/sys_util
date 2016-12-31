@@ -18,6 +18,7 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/syntastic'
+Plug 'python-mode/python-mode'
 
 call plug#end()
 
