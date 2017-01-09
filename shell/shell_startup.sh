@@ -38,6 +38,8 @@ source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
 source $SHELL_HOME/git_env.sh
 source $SHELL_HOME/nginx_env.sh
+# start virtualenvwrapper
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 # 只允许该调度器运行在一个终端进程中
 if [[ $( ps aux | grep -e "python.*schedule_sys.py"|wc -l) < 2 ]]; then
