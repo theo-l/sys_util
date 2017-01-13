@@ -36,12 +36,9 @@ source $SHELL_HOME/java_env.sh
 source $SHELL_HOME/python_env.sh
 source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
-<<<<<<< HEAD
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-=======
 source $SHELL_HOME/git_env.sh
 source $SHELL_HOME/nginx_env.sh
->>>>>>> 5905eb2ab66871f2f619b91d45d01a597c239a9e
 
 # 只允许该调度器运行在一个终端进程中
 if [[ $( ps aux | grep -e "python.*schedule_sys.py"|wc -l) < 2 ]]; then
