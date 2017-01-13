@@ -42,6 +42,7 @@ source $SHELL_HOME/nginx_env.sh
 
 # 只允许该调度器运行在一个终端进程中
 if [[ $( ps aux | grep -e "python.*schedule_sys.py"|wc -l) < 2 ]]; then
+    workon dev2
     python $SHELL_HOME/schedule_sys.py &
 fi
 
