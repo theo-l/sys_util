@@ -5,4 +5,4 @@
 ############################################################
 
 # 每次打开终端时进入到python2的虚拟环境中
-source ~/.virtualenv/py2/bin/activate
+#source ~/.virtualenv/py2/bin/activate
