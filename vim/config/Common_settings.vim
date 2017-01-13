@@ -4,6 +4,7 @@ syntax on "enable vim to detective the file`s syntax
 filetype plugin on "load filetype plugin
 filetype indent on "load related indent file for specific filetype
 
+set nocompatible
 set incsearch "increment search
 set hlsearch "highlight search
 set number "show line number
@@ -120,7 +121,7 @@ endif
 set visualbell "make bell visual instead of ring
 "set cursorbind "when move cursor also move in other window
 set cursorline "highlight current line
-"set cursorcolumn "highlight current column
+set cursorcolumn "highlight current column
 set shortmess=atI "don't show the default vim startup
 set autoread "auto load file when it's changed outside of vim
 set autowrite "auto save file when file has something changed
@@ -217,7 +218,7 @@ if has('gui_running')
     colorscheme molokai
 else
     if IsDay()
-        colorscheme solarized
+        colorscheme default
     else
         colorscheme molokai
     endif

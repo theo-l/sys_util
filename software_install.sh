@@ -5,12 +5,12 @@ GIT_HOME=~/gitworkspace
 PROJECT_HOME=~/projects
 GIT_REPO_URL="https://github.com/theo-l"
 
-if [[ -z $BASH ]]; then
+if [[ ! -z $BASH ]]; then
     UTIL_HOME=$(cd ${BASH_SOURCE[0]%/*} && pwd )
-elif [[  -z ${ZSH_NAME:''} ]]; then
+elif [[ !  -z ${ZSH_NAME:''} ]]; then
     UTIL_HOME=$(dirname $0)
 fi
-UTIL_HOME=$(python -c "import os; print os.path.dirname(os.path.abspath('$0'))")
+
 UTIL_CONFIG_HOME=$UTIL_HOME/config
 SHELL_HOME=$UTIL_HOME/shell
 SHELL_PATH_HOME=$UTIL_HOME/bin
@@ -20,15 +20,18 @@ current_path=$(pwd)
 
 
 
-
 typeset -a common_software_profil_list
+
+# 个人偏好软件集
 common_software_profil_list=(
         #    vim 
         #    vim-gnome 
-	        w3m
+	        w3m #terminal web browser
 	        ncurses-dev
-            git 
-            tmux 
+            git  # version control
+            tmux # multiple screen
+            bpython
+            bpython3
             ipython 
             ipython3 
             python-dev 
@@ -36,17 +39,21 @@ common_software_profil_list=(
         #    python-mysqldb
             python-pip
             python3-pip
-            zsh 
-            htop 
-            nload 
-            curl
+            zsh  # bash-alternative shell
+            htop  # system monitor
+            nload  #network connection information
+            curl #download
             build-essential
             cmake
-            
             silversearcher-ag
+            alpine #email
+            cmus #music
+            tpp #slider expression
 )
 
 typeset -a common_repository_profil_list
+
+# 个人偏好 软件仓库集
 common_repository_profil_list=(
             fonts
             vim
@@ -108,7 +115,9 @@ __python_config() {
     __sep "Configuring python" 
     sudo pip install --upgrade pip
     sudo pip3 install --upgrade pip
+    
     #安装python虚拟环境配置工具
+
     if [[ ! -z $(pip list | grep virtualenv) ]]; then
         echo "virtualenv already exists"
     else
@@ -117,6 +126,7 @@ __python_config() {
     fi
 
     #python 的虚拟环境默认目录为 ~/.virtualenv
+
     if [[ ! -d ~/.virtualenv ]]; then
         mkdir ~/.virtualenv
     fi
@@ -214,20 +224,31 @@ __vim_config() {
     
 #       TODO : vim maybe need to be installed manually
         cd $GIT_HOME/vim
-        ./configure --with-features=huge \
+        ./configure \
+                --prefix=/usr/local/ \
+                --with-features=huge \
                 --enable-multibyte \
+                --enable-cscope \
+                --enable-perlinterp=yes \
                 --enable-pythoninterp \
                 --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
                 --enable-python3interp \
                 --with-python3-config-dir=/usr/lib/python3.5/config-x86_64-linux-gnu\
-                --enable-perlinterp \
-                --enable-cscope --prefix=/usr
+                --enable-gui=yes \
+                --enable-gnome-check \
+                --enable-xim \
+                --enable-fontset \
+                --with-x \
+                --with-compiledby=$USER;
 
-#                --enable-luainterp \
-#                --enable-rubyinterp \
-        make VIMRUNTIMEDIR=/usr/share/vim/vim80; sudo make install
+        make VIMRUNTIMEDIR=/usr/local/share/vim/vim80; sudo make install
 
 
+    fi
+
+    # create backup file directory
+    if [[ ! -d ~/.swp ]]; then
+        mkdir ~/.swp
     fi
 
 

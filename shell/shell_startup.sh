@@ -29,47 +29,58 @@ export PATH=$PATH:$SHELL_PATH_HOME
 
 _debug $SHELL_HOME
 
+# 启用一系列环境配置文件
+
 source $SHELL_HOME/shell_env.sh
 source $SHELL_HOME/java_env.sh
 source $SHELL_HOME/python_env.sh
 source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
+<<<<<<< HEAD
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+=======
+source $SHELL_HOME/git_env.sh
+source $SHELL_HOME/nginx_env.sh
+>>>>>>> 5905eb2ab66871f2f619b91d45d01a597c239a9e
+
+# 只允许该调度器运行在一个终端进程中
+if [[ $( ps aux | grep -e "python.*schedule_sys.py"|wc -l) < 2 ]]; then
+    python $SHELL_HOME/schedule_sys.py &
+fi
 
 
 
-
-
+# 从远程软件仓库获取最新版本到本地项目目录中
 __updating_local_repositories() {
     _sep "Updating local repositories"
 
     for repo in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
-        printf "\nUpdating local repository: ==={%-s}\n" $repo
-        cd $repo
-
-        #过滤掉非 git 目录
-        if [[ ! -d ./.git ]]; then
+        # ignore the project which name start with '.'
+        if [[ $repo =~ '.*/\..*$' || $repo == $PROJECT_HOME || $repo =~ \./taiga.* || $repo =~ \./dangyuan.* ]]; then
             continue
-        else
-            git fetch origin; git pull origin master;
         fi
+
+        # ignore non git repository dirs
+        if [[ ! -d $repo/.git ]]; then
+            continue
+        fi
+
+        printf "\nUpdating local repository: ==={%-s}\n" $repo
+        cd $repo &&  git fetch origin; git pull origin master;
     done
 }
 
-
 _start_shell() {
 
-    _debug "starting up..."    
+    _debug "starting up..."
 
+    # flag to indicate if shell is started on system
     if [[ ! -f $SHELL_HOME/started ]]; then
-    
-        touch $SHELL_HOME/started 
+        touch $SHELL_HOME/started
         __updating_local_repositories
-        
         cd ~
         #TODO
         # MORE STARTUP ACTIONS ADD here
-    
     else
         _debug "Shell already started"
     fi

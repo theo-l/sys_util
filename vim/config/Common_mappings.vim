@@ -20,26 +20,18 @@ map <c-k> <c-w>k
 nmap ,b  0zz
 nmap ,e  $zz
 
+nnoremap ; :
+nnoremap : ;
 
-"########################################"
-"Django manage.py configurations
-"########################################
-nnoremap <leader>pmm :!python manage.py makemigrations
-nnoremap <leader>pcm :!python manage.py migrate<CR>
-nnoremap <leader>ps  :!python manage.py shell<CR>
-nnoremap <leader>prs :!python manage.py runserver<CR>
+
 
 "########################################"
 "vim tab navigation mappings
 "########################################
-"nnoremap <c-Left> :tabprevious<CR>
-"nnoremap <c-Right> :tabnext<CR>
-"inoremap <c-Left> <Esc>:tabprevious<CR>
-"inoremap <c-Right> <Esc>:tabnext<CR>
-""nnoremap <C-u> :tabprevious<CR>
-""nnoremap <C-n> :tabnext<CR>
-""inoremap <C-u> <Esc>:tabprevious<CR>
-""inoremap <C-n> <Esc>:tabnext<CR>
+nnoremap <c-Left> :tabprevious<CR>
+nnoremap <c-Right> :tabnext<CR>
+inoremap <c-Left> <Esc>:tabprevious<CR>
+inoremap <c-Right> <Esc>:tabnext<CR>
 
 "########################################"
 "Quote Match pairs 
@@ -47,11 +39,6 @@ nnoremap <leader>prs :!python manage.py runserver<CR>
 "nmap <leader>pa %
 
 
-"########################################"
-"Line insert Mappings
-"########################################
-"nnoremap 2o o<CR><Esc>ki
-"nnoremap o o<c-o>zz
 
 "########################################"
 "Window adjust Mappings
@@ -62,10 +49,6 @@ nmap gg ggzz
 nmap G  Gzz
 
 
-"########################################"
-"Save Mappings
-"########################################
-nnoremap <leader>w   :w<CR>
 
 "########################################"
 "Delete Mappings
@@ -98,20 +81,25 @@ inoremap jk <Esc>
 inoremap kk <Esc>
 
 
+"########################################"
+"Save Mappings
 "########################################
-"Exits Mappings
-"########################################
-inoremap ,w	 <Esc>:w<CR>
+nnoremap <leader>w  :w<CR>
 nnoremap ,w	 :w<CR>
+inoremap ,w	 <Esc>:w<CR>
 
+"########################################
 " 将每次退出时的状态写入到 ~/.vim/session.vim 文件中
-nnoremap ,q :mksession! ./session.vim<CR>:q<CR>
-nnoremap ,qa :mksession! ./session.vim<CR>:qa<CR>
-nnoremap ,wq :mksession! ./session.vim<CR>:wq<CR>
-nnoremap ,wqa :mksession! ./session.vim<CR>:wqa<CR>
+"########################################
+nnoremap ,q :mksession! ~/session.vim<CR>:q<CR>
+nnoremap ,qa :mksession! ~/session.vim<CR>:qa<CR>
+nnoremap ,wq :mksession! ~/session.vim<CR>:wq<CR>
+nnoremap ,wqa :mksession! ~/session.vim<CR>:wqa<CR>
 
+"########################################
 " 恢复之前退出 Vim 时的状态
-nnoremap ,ss :source ./session.vim<CR>
+"########################################
+nnoremap ,ss :source ~/session.vim<CR>
 
 "########################################"
 " 将字母转换为小写
@@ -151,13 +139,13 @@ map  q: :q
 " 命令行相关的键映射
 "########################################
 "enter shell command line
-map <leader>c :!
+map <leader>c ;!
 
 "executing current line as shell command
-map <leader>cl :.w !bash<CR>
+map <leader>cl ;.w !bash<CR>
 
 "executing current executable script file
-map <leader>cs :call RunCurrentScript()<CR>
+map <leader>cs ;call RunCurrentScript()<CR>
 
 
 "########################################"
@@ -183,7 +171,6 @@ inoremap <leader>" <c-r>=QuoteDelim('"')<CR>
 inoremap <leader>' <c-r>=QuoteDelim("'")<CR>
 inoremap <leader>` <c-r>=QuoteDelim("`")<CR>
 
-"inoremap  <Tab> <c-r>=SkipBracket()<CR>
 
 "########################################"
 "Run Config Command Mapping
@@ -231,7 +218,8 @@ let g:NERDTreeIndicatorMapCustom = {
 "########################################"
 "TagBar configuration
 "########################################
-map <leader>tl :TagbarToggle<CR>
+map ,tl ;TagbarToggle<CR>
+
 
 
 "########################################"
@@ -320,7 +308,7 @@ let g:jedi#show_call_signatures = "1"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
+let g:jedi#usages_command = "N"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"

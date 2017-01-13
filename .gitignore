@@ -1,2 +1,6 @@
 session.vim
+<<<<<<< HEAD
 started
+=======
+bin/connect_test.sh
+>>>>>>> 5905eb2ab66871f2f619b91d45d01a597c239a9e

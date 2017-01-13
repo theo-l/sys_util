@@ -1,13 +1,21 @@
 #!/bin/bash
 
 _sep() {
-    echo -e "\n========== $1 ==========\n" 
+    echo -e "\n========== $1 ==========\n"
 }
 
 _update_git_remote_repos() {
-    _sep "Updating project at shutdown" 
+    _sep "Updating project at shutdown"
 
     for pro in $(find ${PROJECT_HOME}  -maxdepth 1 -type d); do
+
+#        echo -e "$pro  $(basename $pro)\n"
+        
+        if [[ $(basename $pro) == 'jco-backend-python' || $(basename $pro) =~ ^dangyuan.* || $(basename $pro) =~ ^taiga.* ]]; then
+            printf "Working dir $pro dont update automatically\n"
+            continue
+        fi 
+
         cd $pro
         if [[ -d ./.git ]]; then
             if [[ -z $(git status| grep "nothing") ]]; then
