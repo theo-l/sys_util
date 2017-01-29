@@ -4,8 +4,8 @@
 # Java 相关的环境变量配置
 ############################################################
 
-export JAVA_HOME="/home/${username}/Softwares/jdk1.8"
-export JRE_HOME="/home/${username}/Softwares/jdk1.8/jre/"
+export JAVA_HOME="$HOME/Softwares/jdk1.8"
+export JRE_HOME="$JAVA_HOME/jre/"
 export CLASSPATH="$JAVA_HOME/lib/"
-export PATH=$PATH:$JAVA_HOME/bin:$SOFTWARE_HOME/inntelJ/bin
+export PATH="$JAVA_HOME/bin:$PATH"
 
