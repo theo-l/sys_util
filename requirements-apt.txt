@@ -1,0 +1,62 @@
+#terminal tools
+git
+tmux
+zsh
+htop
+nload
+silversearcher-ag
+libncurses5-dev
+curl
+# gnome vim
+vim-gnome
+
+# a tool to check package informations
+wajig 
+
+dpkg-dev
+
+#pyenv dependency
+zlib1g-dev
+
+# build tools
+build-essential
+cmake
+
+# sogoupinyin input method dependency
+fcitx-frontend-gtk3
+fcitx-frontend-qt4
+fcitx-module-kimpanel
+libopencc1
+fcitx-libs
+fcitx-libs-qt
+libqt4-dbus
+libqt4-declarative
+libqt4-network
+
+
+
+# python related tools dependencies
+virtualenv
+virtualenvwrapper
+python-dev
+python3-dev
+python-pip
+python3-pip
+ipython
+ipython3
+bpython
+bpython3
+#python-mysqldb
+# for install MySQLdb in python
+libmysqlclient-dev
+
+
+
+# vivaldi browser dependency
+libpango1.0-0
+fonts-liberation
+
+
+#celery tutor
+rabbitmq-server
+
