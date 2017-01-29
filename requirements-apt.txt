@@ -12,6 +12,7 @@ vim-gnome
 
 # a tool to check package informations
 wajig 
+gedit
 
 dpkg-dev
 
