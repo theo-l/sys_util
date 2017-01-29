@@ -38,6 +38,8 @@ alias cdpic="cd $PICTURE_HOME"
 alias cdgit="cd $GIT_HOME"
 alias cdprj="cd $PROJECT_HOME"
 alias cdwk="cd $WORKSPACE_HOME"
+alias cdtest="cd $TEST_HOME"
+alias cdnote="cd $NOTE_HOME"
 alias cdsh="cd $(dirname $SHELL_HOME)"
 
 alias cd2py="cd $PYTHON_ENV_HOME/py2"
