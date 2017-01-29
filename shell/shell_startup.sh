@@ -36,7 +36,7 @@ source $SHELL_HOME/java_env.sh
 source $SHELL_HOME/python_env.sh
 source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+#source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 source $SHELL_HOME/git_env.sh
 source $SHELL_HOME/nginx_env.sh
 # start virtualenvwrapper
