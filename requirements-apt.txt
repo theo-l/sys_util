@@ -9,6 +9,7 @@ libncurses5-dev
 curl
 # gnome vim
 vim-gnome
+gnome-terminal
 
 # a tool to check package informations
 wajig 
