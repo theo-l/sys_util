@@ -10,6 +10,7 @@ curl
 # gnome vim
 vim-gnome
 gnome-terminal
+exuberant-ctags
 
 # a tool to check package informations
 wajig 
