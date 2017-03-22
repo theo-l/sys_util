@@ -1,0 +1,5 @@
+Fabric
+virtualenvwrapper
+uWSGI==2.0.14
+Pylint
+jupyter

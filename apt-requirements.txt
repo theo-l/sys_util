@@ -11,10 +11,12 @@ curl
 vim-gnome
 gnome-terminal
 exuberant-ctags
+gnome-screenshot
 
 # a tool to check package informations
 wajig 
 gedit
+scratch
 
 
 dpkg-dev
@@ -72,10 +74,28 @@ ipython
 ipython3
 bpython
 bpython3
+bzip2
+readline-common
+sqlite3
+
 #python-mysqldb
 # for install MySQLdb in python
 libmysqlclient-dev
 
+#motilink dependencies
+mysql-server 
+nginx
+libtiff5-dev
+zlib1g-dev
+libfreetype6-dev
+liblcms2-dev
+libwebp-dev
+tcl8.6-dev
+tk8.6-dev
+python-tk
+python-mysqldb
+redis-server
+libssl-dev
 
 
 # vivaldi browser dependency
@@ -84,5 +104,11 @@ fonts-liberation
 
 
 #celery tutor
-rabbitmq-server
+#rabbitmq-server
+redis-server
 
+#sqlitebrowser
+sqlitebrowser
+
+#light weight broswer
+midori
