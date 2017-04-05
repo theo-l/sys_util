@@ -39,6 +39,7 @@ source $SHELL_HOME/shell_alias.sh
 #source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 source $SHELL_HOME/git_env.sh
 source $SHELL_HOME/nginx_env.sh
+source $SHELL_HOME/shell_options.sh
 # start virtualenvwrapper
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
