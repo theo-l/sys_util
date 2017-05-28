@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-export GIT_HOME="/home/dev/GitWorkspace"
+export GIT_HOME="$HOME/gitworkspace"
 
+if [[ ! -d $GIT_HOME ]]; then
+    mkdir $GIT_HOME
+fi
 
 
 __powerline_font_config() {
