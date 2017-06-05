@@ -12,11 +12,13 @@ vim-gnome
 gnome-terminal
 exuberant-ctags
 gnome-screenshot
+p7zip
+convmv
 
 # a tool to check package informations
 wajig 
+
 gedit
-scratch
 
 
 dpkg-dev
@@ -112,3 +114,5 @@ sqlitebrowser
 
 #light weight broswer
 midori
+
+
