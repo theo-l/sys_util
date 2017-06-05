@@ -36,9 +36,16 @@ source $SHELL_HOME/java_env.sh
 source $SHELL_HOME/python_env.sh
 source $SHELL_HOME/django_env.sh
 source $SHELL_HOME/shell_alias.sh
+source $SHELL_HOME/vagrant_alias.sh
 #source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 source $SHELL_HOME/git_env.sh
 source $SHELL_HOME/nginx_env.sh
+source $SHELL_HOME/shell_options.sh
 # start virtualenvwrapper
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+#source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+# init pyenv
+eval "$(pyenv init -)"
+# init pyenv virtualenv
+eval "$(pyenv virtualenv-init -)"
+
 
