@@ -48,4 +48,7 @@ eval "$(pyenv init -)"
 # init pyenv virtualenv
 eval "$(pyenv virtualenv-init -)"
 
+# go configuration
+source $SHELL_HOME/go_env.sh
+
 
